@@ -1,0 +1,51 @@
+%==================================================================
+% FORMULIR RESMI  FR-UAJ-07-39/R0
+% PERNYATAAN PEMBIMBING TUGAS AKHIR MAHASISWA
+%
+% Data diambil otomatis dari a0-identitas.tex.
+% Judul dipecah manual menjadi tiga baris karena mengikuti bentuk
+% formulir resmi; sesuaikan pemenggalannya dengan judul Anda.
+%==================================================================
+\clearpage
+\thispagestyle{empty}
+\kopformulir{FR-UAJ-07-39/R0}
+
+\begin{center}
+    \textbf{FORMULIR}\\[0.3em]
+    \textbf{PERNYATAAN PEMBIMBING TUGAS AKHIR MAHASISWA}\\[0.3em]
+    \textbf{PROGRAM STUDI \MakeUppercase{\prodi}}
+\end{center}
+\vspace{1.5em}
+
+{\bfseries
+\isianform{NAMA}{\MakeUppercase{\penulis}}
+\vspace{1em}
+\isianform{NIM}{\nim}
+\vspace{0.8em}
+% --- Judul: diambil otomatis dari \judulid, membungkus sendiri ---
+\isianjudul{JUDUL TUGAS AKHIR}{\judulid}
+\vspace{0.8em}
+\isianform{Tanggal Ujian T.A}{\tglujian}
+}
+
+\vspace{1.5em}
+\noindent Menyatakan bahwa \textbf{Tugas Akhir dan Makalah} telah dikoreksi
+sesuai dengan hasil sidang\textbf{.}
+
+\vspace{2.5em}
+\hfill \kotaformulir, \tglkoreksi \hspace{1.5cm}
+
+\vspace{1em}
+\noindent
+\ifdefstring{\jumlahpembimbing}{2}{%
+\begin{tabular}{@{}p{0.49\textwidth}@{\hfill}p{0.49\textwidth}@{}}
+    Pembimbing I & Pembimbing II \\[3cm]
+    {\small\bfseries\pembimbing} & {\small\bfseries\pembimbingdua} \\
+    {\small NIP/NIK. \NIPpembimbing} & {\small NIP/NIK. \NIPpembimbingdua} \\
+\end{tabular}
+}{%
+\begin{tabular}{@{}p{0.49\textwidth}@{\hfill}p{0.49\textwidth}@{}}
+    Mengetahui KaProdi & Pembimbing Tugas Akhir \\[3cm]
+    {\small\koorprodi} & {\small\bfseries\pembimbing} \\
+\end{tabular}
+}

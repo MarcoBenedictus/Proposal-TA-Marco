@@ -1,0 +1,17 @@
+# Artefak kompilasi LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.lap
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.run.xml
+
+# Hasil akhir (hapus baris ini bila PDF ingin ikut disimpan di repositori)
+laporan.pdf

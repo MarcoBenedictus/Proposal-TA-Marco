@@ -1,0 +1,24 @@
+%==================================================================
+% DAFTAR ISI, GAMBAR, TABEL, DAN LAMPIRAN  (dihasilkan otomatis)
+%==================================================================
+\phantomsection
+\addcontentsline{toc}{chapter}{DAFTAR ISI}
+\tableofcontents
+\clearpage
+
+\phantomsection
+\addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
+\listoffigures
+\clearpage
+
+\phantomsection
+\addcontentsline{toc}{chapter}{DAFTAR TABEL}
+\listoftables
+\clearpage
+
+\ifdefstring{\jenisnaskah}{ta}{%
+\phantomsection
+\addcontentsline{toc}{chapter}{DAFTAR LAMPIRAN}
+\listoflampiran
+\clearpage
+}{}

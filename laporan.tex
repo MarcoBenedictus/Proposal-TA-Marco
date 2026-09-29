@@ -1,0 +1,68 @@
+%==================================================================
+% TEMPLATE TUGAS AKHIR — PROGRAM STUDI SISTEM INFORMASI (S1)
+%
+% Cara kompilasi:
+%   pdflatex laporan  ->  bibtex laporan  ->  pdflatex laporan  ->  pdflatex laporan
+% Di Overleaf cukup tekan Recompile.
+%==================================================================
+\documentclass[12pt,a4paper,oneside]{report}
+
+\newcommand{\jenisnaskah}{ta}   % <-- naskah TUGAS AKHIR
+\input{a0-identitas}        % data mahasiswa + gaya sitasi  (WAJIB DIISI)
+\input{xx-preambles}        % lapis mesin                   (tidak perlu diubah)
+
+\begin{document}
+
+%------------------ BAGIAN AWAL (angka romawi) --------------------
+\pagenumbering{roman}
+\include{xx-sampul}
+\include{xx-sampuldalam}
+
+%------------------------------------------------------------------
+% HALAMAN LEGAL — TERSEDIA DUA VERSI
+%
+% VERSI A: formulir resmi FR-UAJ (di bawah ini).
+% VERSI B: halaman legal versi template (blok berikutnya).
+%
+% PILIH SALAH SATU. Beri tanda % pada blok yang tidak dipakai,
+% atau hapus berkasnya sekalian.
+%------------------------------------------------------------------
+
+% ---------- VERSI A: FORMULIR RESMI FR-UAJ ----------
+\include{xx-form-pembimbing}    % FR-UAJ-07-39/R0
+\include{xx-form-selesai}       % FR-UAJ-07-40/R0
+\include{xx-form-pengesahan}    % FR-UAJ-07-46/R0
+\include{xx-form-keaslian}      % FR-UAJ-07-47/R0
+
+% ---------- VERSI B: HALAMAN LEGAL VERSI TEMPLATE ----------
+%\include{xx-persetujuan}
+%\include{xx-pengesahan}
+%\include{xx-pernyataan}
+\include{a2-abstrak}
+\include{a3-abstract}
+\include{a4-persembahan}
+\include{a5-katapengantar}
+\include{xx-daftar}
+\include{a6-daftarsingkatan}
+
+%------------------ BAGIAN ISI (angka arab) -----------------------
+\clearpage
+\pagenumbering{arabic}
+\include{b1-bab1}
+\include{b2-bab2}
+\include{b3-bab3}
+\include{b4-bab4}
+\include{b5-bab5}
+
+%------------------ BAGIAN AKHIR ----------------------------------
+\include{xx-deklarasi-ai}
+\include{xx-daftarpustaka}
+\include{a8-lampiran}
+
+%==================================================================
+% GALERI ELEMEN — contoh tabel, gambar, rumus, kode, dan sitasi.
+% HAPUS ATAU BERI TANDA % PADA BARIS DI BAWAH sebelum naskah dikumpulkan.
+%==================================================================
+%\include{zz-galeri-elemen}
+
+\end{document}

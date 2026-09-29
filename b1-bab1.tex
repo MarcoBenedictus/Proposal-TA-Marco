@@ -1,0 +1,115 @@
+%==================================================================
+% BAB 1 — PENDAHULUAN
+%
+% Catatan: teks di bawah adalah CONTOH BERJALAN bertema WebQual 4.0.
+% Ganti isinya dengan penelitian Anda, tetapi PERTAHANKAN POLANYA.
+%==================================================================
+
+\chapter{PENDAHULUAN}
+
+\section{Latar Belakang}
+
+% ---- PARAGRAF 1: FENOMENA UMUM ----------------------------------
+% Nyatakan fenomena secara umum dan dukung dengan data atau fakta.
+% Belum menyebut objek penelitian Anda.
+
+% ---- PARAGRAF 2: KESENJANGAN KONDISI IDEAL DAN AKTUAL ------------
+% Tunjukkan jarak antara yang seharusnya dan yang terjadi.
+% Di sinilah objek penelitian mulai diperkenalkan.
+
+% ---- PARAGRAF 3: PENELITIAN TERDAHULU ---------------------------
+% Perkenalkan rujukan yang NANTI AKAN DIPANGGIL ULANG di pembahasan
+% Bab 4. Inilah yang membuat naskah terasa menyatu.
+
+% ---- PARAGRAF 4: CELAH PENELITIAN -------------------------------
+% Nyatakan celah berdasarkan pola yang terlihat pada paragraf 3.
+% JANGAN mengarang kebaruan. Cukup nyatakan posisi penelitian Anda.
+
+% ---- PARAGRAF 5: SOLUSI DAN KONTRIBUSI --------------------------
+% Nyatakan apa yang Anda lakukan dan apa yang dihasilkan.
+
+% ---- PARAGRAF 1: FENOMENA UMUM ----------------------------------
+% Nyatakan fenomena secara umum dan dukung dengan data atau fakta.
+% Belum menyebut objek penelitian Anda.
+Perkembangan antarmuka percakapan interaktif pada video \textit{game} modern mendorong peralihan dari penggunaan pohon dialog kaku menuju sistem interaksi bebas yang memungkinkan pemain berinteraksi secara alami dengan \textit{Non-Player Character} (NPC). Penerapan pemrosesan bahasa alami dan kecerdasan artifisial pada NPC memerlukan durasi komputasi tertentu untuk memproses masukan pemain sebelum menghasilkan respons teks. Waktu komputasi yang panjang ini memicu kemunculan latensi respons yang dapat menghentikan alur interaksi secara mendadak di dalam dunia permainan. Latensi yang tidak terkelola menyebabkan karakter NPC tampak membeku (\textit{frozen agent}) serta mengikis tingkat keterlibatan pemain. Oleh karena itu, penanganan latensi respons memiliki dampak dalam perancangan antarmuka \textit{game} untuk menjaga kelancaran alur pengalaman pengguna.
+
+% ---- PARAGRAF 2: KESENJANGAN KONDISI IDEAL DAN AKTUAL ------------
+% Tunjukkan jarak antara yang seharusnya dan yang terjadi.
+% Di sinilah objek penelitian mulai diperkenalkan.
+Kondisi ideal dari interaksi dialog NPC pada \textit{game} eksplorasi kampus adalah tersedianya respons yang intuitif dan realistis tanpa membuat pemain merasa jenuh akibat menunggu jeda waktu komputasi. Pada kondisi aktualnya, pengembangan NPC terintegrasi AI pada \textit{game} secara general menghadapi tantangan berupa latensi pemrosesan respons yang membutuhkan waktu beberapa detik hingga hitungan menit. Apabila jeda waktu tunggu komputasi ini hanya ditutupi menggunakan indikator pemuatan konvensional \textit{non-diegetic} seperti \textit{loading bar} atau teks "\textit{Thinking...}", persepsi waktu tunggu (\textit{perceived latency}) pemain akan terasa semakin lama. Tampilan indikator \textit{non-diegetic} tersebut secara langsung merusak imersi naratif (\textit{player immersion}) karena menarik pemain keluar dari atmosfer fiksi dunia permainan. Kesenjangan antara kebutuhan akan alur interaksi yang imersif dan tingginya latensi komputasi ini mendorong dibutuhkannya mekanisme penyamaran latensi berbasis antarmuka diegetik (\textit{Diegetic Latency Masking}).
+
+% ---- PARAGRAF 3: PENELITIAN TERDAHULU ---------------------------
+% Perkenalkan rujukan yang NANTI AKAN DIPANGGIL ULANG di pembahasan
+% Bab 4. Inilah yang membuat naskah terasa menyatu.
+\citet{siahaan2026retrieval} membuktikan secara empiris bahwa pemrosesan dialog NPC tingkat lanjut pada model lokal menghasilkan latensi ekstrim berkisar antara 23,53 hingga 220,59 detik yang berpotensi memutus kontinuitas permainan. Untuk mengatasi keterpisahan antara proses berpikir dan eksekusi karakter, \citet{wei2025mind} merancang arsitektur hibrida \textit{Mind and Body} yang membuktikan bahwa menjaga animasi fisik NPC tetap aktif dapat mempertahankan keterlibatan pemain saat proses komputasi berlangsung. Dalam kajian antarmuka \textit{game}, \citet{andersson2024effects} menemukan bahwa \textit{Diegetic User Interface} yang menyatu dalam dunia fiksi permainan secara signifikan mampu meningkatkan \textit{player immersion} dibandingkan elemen antarmuka konvensional. Sementara itu, studi sistem dialog oleh \citet{mckee2026designing} serta \citet{zaera2025efficient} menekankan pentingnya pengelolaan konteks interaksi dan efisiensi \textit{routing} agar sistem dialog tetap stabil dan terarah.
+
+% ---- PARAGRAF 4: CELAH PENELITIAN -------------------------------
+% Nyatakan celah berdasarkan pola yang terlihat pada paragraf 3.
+% JANGAN mengarang kebaruan. Cukup nyatakan posisi penelitian Anda.
+Berdasarkan pola pada penelitian terdahulu di atas, terlihat adanya kesenjangan penelitian (\textit{research gap}) dalam integrasi antara antarmuka diegetik dan penanganan latensi respons NPC. Penelitian mengenai \textit{Diegetic} UI sejauh ini umumnya terbatas pada elemen visual statis seperti menu inventaris atau indikator kesehatan, tanpa dimanfaatkan sebagai alat penyamar latensi komputasi (\textit{latency masking}). Di sisi lain, penelitian mengenai penanganan latensi NPC lebih berfokus pada optimasi arsitektur \textit{backend} dan algoritma tanpa mengeksplorasi rekayasa antarmuka perilaku karakter di \textit{frontend game engine}. Selain itu, belum ada pengujian empiris yang membandingkan dampak \textit{Diegetic Latency Masking} berbasis animasi kontekstual dengan indikator pemuatan konvensional terhadap persepsi waktu tunggu (\textit{perceived latency}) pemain pada \textit{game} eksplorasi kampus. Celah penelitian ini membuka peluang untuk mengevaluasi efektivitas animasi kontekstual NPC sebagai mekanisme penyamaran latensi yang menjaga imersi dan retensi pemain.
+
+% ---- PARAGRAF 5: SOLUSI DAN KONTRIBUSI --------------------------
+% Nyatakan apa yang Anda lakukan dan apa yang dihasilkan.
+Untuk mengisi celah penelitian tersebut, penelitian ini merancang dan mengimplementasikan mekanisme \textit{Diegetic Latency Masking} pada NPC dalam \textit{game} 2D eksplorasi kampus Atma Jaya BSD. Mekanisme ini bekerja secara \textit{asynchronous} dengan memicu animasi fisik kontekstual NPC, seperti berjalan menuju rak buku atau memeriksa dokumen, untuk menyamarkan durasi waktu komputasi saat respons sedang diproses. Evaluasi eksperimental dilakukan melalui \textit{playtesting} untuk membandingkan \textit{Diegetic Latency Masking} dengan indikator \textit{non-diegetic} konvensional. Kontribusi praktis penelitian ini adalah terwujudnya purwarupa \textit{game} 2D dengan mekanisme penyamaran latensi yang dapat direplikasi oleh pengembang \textit{game} untuk meningkatkan \textit{user experience}. Kontribusi akademis penelitian ini bertujuan untuk mengukur pengaruh \textit{Diegetic Latency Masking} terhadap penurunan \textit{perceived latency} serta peningkatan \textit{player immersion} dan retensi pemain.
+
+\section{Rumusan Masalah}
+% Setiap rumusan masalah diberi \label agar dapat dirujuk dari Bab 3, 4, dan 5.
+% Merujuknya cukup dengan \cref{rq:kualitas} -> menghasilkan "RQ1".
+% Bila urutannya diubah, seluruh rujukan menyesuaikan sendiri.
+Berdasarkan latar belakang di atas, rumusan masalah penelitian ini adalah:
+
+\begin{rumusanmasalah}
+    \item Bagaimana merancang dan mengimplementasikan mekanisme \textit{Diegetic Latency Masking} berbasis animasi kontekstual NPC pada \textit{game} 2D eksplorasi kampus?\label{rq:design}
+    \item Bagaimana pengaruh penerapan \textit{Diegetic Latency Masking} dibandingkan dengan indikator pemuatan konvensional \textit{non-diegetic} terhadap persepsi waktu tunggu (\textit{perceived latency}), \textit{player immersion}, dan retensi pemain?\label{rq:evaluation}
+\end{rumusanmasalah}
+
+\section{Batasan Masalah}
+Agar pembahasan terfokus, penelitian ini dibatasi sebagai berikut.
+
+\begin{daftarnomor}
+    \item Ruang Lingkup dan Konteks \textit{Game Engine}: Purwarupa dikembangkan sebagai \textit{game} 2D eksplorasi kampus Unika Atma Jaya BSD berfokus pada skenario interaksi dengan NPC di Kampus.
+    \item Mekanisme \textit{Latency Masking}: \textit{Diegetic Latency Masking} diwujudkan melalui animasi fisik kontekstual NPC secara \textit{asynchronous} (misalnya: gerakan NPC berjalan ke rak buku atau mencari dokumen perpustakaan) selama jeda waktu pemrosesan respons.
+    \item Sistem Pembanding (\textit{Baseline}): Sebagai pembanding dalam pengujian A/B \textit{Testing}, digunakan indikator pemuatan konvensional \textit{non-diegetic} berupa tampilan \textit{loading bar} atau teks indikator pemuatan ("\textit{Thinking...}").
+    \item Metrik dan Metode Pengujian: Evaluasi berfokus pada pengukuran persepsi waktu tunggu (\textit{perceived latency}), tingkat imersi (\textit{player immersion}), dan retensi pemain yang diukur melalui pengujian \textit{user playtesting} dan kuesioner skala Likert.
+\end{daftarnomor}
+
+\section{Tujuan dan Manfaat}
+
+\subsection{Tujuan Penelitian}
+% Tujuan disusun SEJAJAR SATU-SATU dengan rumusan masalah.
+% T1 menjawab RQ1, T2 menjawab RQ2, dan seterusnya.
+\begin{daftartujuan}
+    \item Merancang dan mengimplementasikan mekanisme \textit{Diegetic Latency Masking} berbasis animasi kontekstual NPC pada \textit{game} 2D eksplorasi kampus.
+    \item Menguji dan menganalisis pengaruh penerapan \textit{Diegetic Latency Masking} dibandingkan dengan indikator \textit{non-diegetic} konvensional terhadap persepsi waktu tunggu (\textit{perceived latency}), \textit{player immersion}, dan retensi pemain.
+\end{daftartujuan}
+
+\subsection{Manfaat Penelitian}
+
+\subsubsection{Manfaat Praktis}
+Hasil penelitian ini menyediakan pola antarmuka dan teknik \textit{Diegetic Latency Masking} yang siap direplikasi oleh pengembang \textit{game} independen untuk menangani masalah latensi NPC.
+
+\subsubsection{Manfaat Akademis}
+Penelitian ini memberikan kontribusi dalam bidang \textit{Human-Computer Interaction} (HCI) dan \textit{Game Design} mengenai efektivitas antarmuka diegetik dalam mengelola persepsi waktu tunggu dan imersi pemain.
+
+\section{Sistematika Penulisan}
+\ifdefstring{\jenisnaskah}{proposal}{%
+Proposal Tugas Akhir ini disusun dalam tiga bab dengan rincian berikut.
+
+\noindent \textbf{BAB 1 PENDAHULUAN} memuat latar belakang, rumusan masalah, batasan masalah, serta tujuan dan manfaat penelitian.
+
+\noindent \textbf{BAB 2 TINJAUAN PUSTAKA} memuat sintesis penelitian terdahulu, landasan teori mengenai antarmuka diegetik, \textit{perceived latency}, dan \textit{asynchronous state}, serta justifikasi pemilihan metode.
+
+\noindent \textbf{BAB 3 METODE PENELITIAN} memuat rancangan eksperimen A/B \textit{Testing}, perancangan animasi diegetik, skenario \textit{playtesting}, serta matriks keterkaitan penelitian.
+}{%
+Penulisan Tugas Akhir ini disusun dalam lima bab dengan rincian berikut.
+
+\noindent \textbf{BAB 1 PENDAHULUAN} memuat latar belakang, rumusan masalah, batasan masalah, tujuan dan manfaat, serta sistematika penulisan.
+
+\noindent \textbf{BAB 2 TINJAUAN PUSTAKA} memuat sintesis penelitian terdahulu, landasan teori mengenai antarmuka diegetik, \textit{perceived latency}, dan \textit{asynchronous state}, serta justifikasi pemilihan metode.
+
+\noindent \textbf{BAB 3 METODE PENELITIAN} memuat rancangan eksperimen A/B \textit{Testing}, perancangan animasi diegetik, skenario \textit{playtesting}, instrumen evaluasi, serta matriks keterkaitan penelitian.
+
+\noindent \textbf{BAB 4 HASIL DAN PEMBAHASAN} memuat hasil implementasi \textit{Diegetic Latency Masking}, analisis data pengujian \textit{perceived latency} \& imersi, serta pembahasan keterkaitan dengan studi terdahulu.
+
+\noindent \textbf{BAB 5 KESIMPULAN DAN SARAN} memuat kesimpulan yang menjawab setiap rumusan masalah secara sistematis serta saran untuk pengembangan penelitian selanjutnya.
+}

@@ -1,0 +1,48 @@
+%==================================================================
+% MASTER PROPOSAL TUGAS AKHIR
+%
+% Berbagi berkas dengan laporan.tex (Tugas Akhir). Perbedaannya diatur
+% oleh jenis naskah di bawah, yang otomatis:
+%   - mengubah label sampul menjadi "PROPOSAL TUGAS AKHIR",
+%   - memakai Lembar Persetujuan (bukan pengesahan/keaslian),
+%   - menampilkan sistematika 3 bab pada Bab 1,
+%   - menyembunyikan Daftar Lampiran.
+%
+% Bab 1 dan Bab 2 SAMA dengan naskah Tugas Akhir (yang dijanjikan),
+% sedangkan Bab 3 memakai b3-proposal (rancangan penelitian + jadwal).
+%
+% Kompilasi: pdflatex proposal -> bibtex proposal -> pdflatex proposal x2
+% Di Overleaf: set "Main document" ke proposal.tex, lalu Recompile.
+%==================================================================
+\documentclass[12pt,a4paper,oneside]{report}
+
+\newcommand{\jenisnaskah}{proposal}   % <-- naskah PROPOSAL
+\input{a0-identitas}        % data mahasiswa + gaya sitasi  (WAJIB DIISI)
+\input{xx-preambles}        % lapis mesin                   (tidak perlu diubah)
+
+\begin{document}
+
+%------------------ BAGIAN AWAL (angka romawi) --------------------
+\pagenumbering{roman}
+\include{xx-sampul}
+% \include{xx-sampuldalam}   % sampul dalam Inggris — nonaktif pada proposal
+                             % (mengikuti contoh). Aktifkan bila prodi memintanya.
+\include{xx-persetujuan}     % Lembar Persetujuan (1 atau 2 pembimbing)
+
+% --- Front-matter opsional (aktifkan sesuai ketentuan prodi) ---
+% \include{a5-katapengantar}
+% \include{a6-daftarsingkatan}
+
+\include{xx-daftar}          % Daftar Isi, Gambar, Tabel
+
+%------------------ BAGIAN ISI (angka arab) -----------------------
+\clearpage
+\pagenumbering{arabic}
+\include{b1-bab1}            % BAB 1 PENDAHULUAN  (dibagi dengan TA)
+\include{b2-bab2}            % BAB 2 TINJAUAN PUSTAKA (dibagi dengan TA)
+\include{b3-proposal}        % BAB 3 RANCANGAN PENELITIAN (khusus proposal)
+
+%------------------ BAGIAN AKHIR ----------------------------------
+\include{xx-daftarpustaka}
+
+\end{document}

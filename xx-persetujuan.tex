@@ -1,0 +1,49 @@
+%==================================================================
+% LEMBAR PERSETUJUAN
+% - Label tipe (Tugas Akhir / Proposal Tugas Akhir) otomatis via \labeltipe.
+% - Mendukung 1 atau 2 pembimbing via \jumlahpembimbing (a0-identitas.tex).
+% Mengikuti bentuk contoh proposal resmi prodi.
+%==================================================================
+\thispagestyle{plain}
+\phantomsection
+\addcontentsline{toc}{chapter}{LEMBAR PERSETUJUAN}
+\begin{center}
+    \textbf{\large LEMBAR PERSETUJUAN}\\[1.2em]
+    \MakeUppercase{\labeltipe}\\[1em]
+    \begin{spacing}{1.15}
+        \textbf{\MakeUppercase{\judulid}}
+    \end{spacing}
+\end{center}
+
+\vspace{2.5em}
+\begin{center}
+    diajukan oleh:\\[0.5em]
+    \penulis\\
+    \nim
+\end{center}
+
+\vspace{3em}
+\begin{center}
+    telah diperiksa dan disetujui oleh:
+\end{center}
+
+\vspace{2.5em}
+\ifdefstring{\jumlahpembimbing}{2}{%
+    % ---------- DUA PEMBIMBING ----------
+    \noindent\begin{tabular}{@{}p{0.48\textwidth}@{\hfill}p{0.48\textwidth}@{}}
+        Pembimbing I & Pembimbing II \\[2.8cm]
+        \pembimbing & \pembimbingdua \\
+        NIP/NIK. \NIPpembimbing & NIP/NIK. \NIPpembimbingdua \\
+        Tanggal: \tglpersetujuan & Tanggal: \tglpersetujuandua \\
+    \end{tabular}
+}{%
+    % ---------- SATU PEMBIMBING ----------
+    \begin{center}
+        \noindent Pembimbing\\[2.8cm]
+        \pembimbing\\
+        NIP/NIK. \NIPpembimbing\\
+        Tanggal: \tglpersetujuan    
+    \end{center}
+    
+}
+\clearpage

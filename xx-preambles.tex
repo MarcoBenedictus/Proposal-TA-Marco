@@ -1,0 +1,412 @@
+%==================================================================
+% LAPIS MESIN — pengaturan paket, tata letak, dan format
+%
+% Berkas ini TIDAK PERLU DIUBAH oleh mahasiswa.
+% Seluruh data pribadi dan pilihan gaya sitasi diatur di a0-identitas.tex
+%==================================================================
+
+%------------------------------------------------------------------
+% 1. BAHASA
+% Paket babel bahasa Indonesia diganti pengaturan istilah manual agar
+% template dapat dikompilasi di semua lingkungan, termasuk yang belum
+% memasang paket babel-indonesian. Karena hyphenation dimatikan di
+% bawah, tidak ada fitur yang hilang.
+% Jika memakai Overleaf/MiKTeX dan ingin mengaktifkan babel, hapus blok
+% \renewcommand di bawah lalu aktifkan baris berikut:
+% \usepackage[bahasa]{babel}
+%------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+
+% Istilah struktural mengikuti \bahasanaskah pada a0-identitas.tex.
+% Halaman legal (persetujuan, pengesahan, pernyataan) tetap Bahasa
+% Indonesia karena merupakan dokumen resmi institusi.
+\ifdefstring{\bahasanaskah}{en}{%
+    \renewcommand{\chaptername}{CHAPTER}%
+    \renewcommand{\figurename}{Figure}%
+    \renewcommand{\tablename}{Table}%
+    \providecommand{\appendixname}{Appendix}%
+    \renewcommand{\appendixname}{Appendix}%
+    \renewcommand{\contentsname}{TABLE OF CONTENTS}%
+    \renewcommand{\listfigurename}{LIST OF FIGURES}%
+    \renewcommand{\listtablename}{LIST OF TABLES}%
+    \renewcommand{\bibname}{BIBLIOGRAPHY}%
+    \newcommand{\judullampiran}{LIST OF APPENDICES}%
+    \newcommand{\katasumber}{Source}%
+}{%
+    \renewcommand{\chaptername}{BAB}%
+    \renewcommand{\figurename}{Gambar}%
+    \renewcommand{\tablename}{Tabel}%
+    \providecommand{\appendixname}{Lampiran}%
+    \renewcommand{\appendixname}{Lampiran}%
+    \renewcommand{\contentsname}{DAFTAR ISI}%
+    \renewcommand{\listfigurename}{DAFTAR GAMBAR}%
+    \renewcommand{\listtablename}{DAFTAR TABEL}%
+    \renewcommand{\bibname}{DAFTAR PUSTAKA}%
+    \newcommand{\judullampiran}{DAFTAR LAMPIRAN}%
+    \newcommand{\katasumber}{Sumber}%
+}
+
+%------------------------------------------------------------------
+% JENIS NASKAH: ta (Tugas Akhir) atau proposal (Proposal Tugas Akhir).
+% Disetel oleh berkas master (laporan.tex / proposal.tex) SEBELUM \input
+% berkas ini. Bila belum disetel, dianggap "ta".
+%------------------------------------------------------------------
+\providecommand{\jenisnaskah}{ta}
+\ifdefstring{\jenisnaskah}{proposal}{%
+    \newcommand{\labeltipe}{Proposal Tugas Akhir}%
+    \newcommand{\labeltype}{Undergraduate Thesis Proposal}%
+    \newcommand{\submitline}{}%
+    \newcommand{\submitlineen}{}%
+}{%
+    \newcommand{\labeltipe}{Tugas Akhir}%
+    \newcommand{\labeltype}{Undergraduate Thesis}%
+    \newcommand{\submitline}{diajukan untuk memenuhi syarat\\ mendapatkan gelar \gelar}%
+    \newcommand{\submitlineen}{submitted in partial fulfillment of the requirements\\ for the degree of \gelaren}%
+}
+
+% Mematikan hyphenation (pemenggalan kata) sesuai kelaziman naskah Indonesia
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\tolerance=9999
+\emergencystretch=3em
+
+%------------------------------------------------------------------
+% 2. HURUF DAN TATA LETAK HALAMAN
+%------------------------------------------------------------------
+\usepackage{mathptmx}                     % Times New Roman
+\usepackage[a4paper,left=4cm,top=3cm,right=3cm,bottom=3cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing                           % spasi 1,5
+\setlength{\parindent}{1.27cm}            % indentasi awal paragraf
+\usepackage{indentfirst}                  % paragraf pertama ikut menjorok
+
+%------------------------------------------------------------------
+% 3. FORMAT JUDUL BAB DAN SUBBAB
+%------------------------------------------------------------------
+\usepackage{titlesec}
+\renewcommand{\chaptertitlename}{BAB}     % istilah Indonesia (setelah titlesec)
+
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\centering}
+  {\Large\chaptertitlename\ \thechapter}
+  {0pt}
+  {\Large}
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
+
+\titleformat{\section}{\normalfont\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\bfseries}{\thesubsubsection}{1em}{}
+
+% Penomoran subbab: 1.1, 1.1.1, 1.1.1.1
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+%------------------------------------------------------------------
+% 4. NOMOR HALAMAN
+%------------------------------------------------------------------
+\usepackage{fancyhdr}
+\setlength{\headheight}{14.5pt}            % ruang untuk nomor di kepala halaman
+% Gaya halaman biasa: nomor di KANAN ATAS.
+\fancypagestyle{fancy}{\fancyhf{}\fancyhead[R]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+% Halaman pembuka BAB memakai gaya "plain" secara otomatis (perintah
+% \chapter). Di sana nomor diletakkan di BAWAH-TENGAH.
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+\pagestyle{fancy}
+
+% Pembagian aturan front matter vs isi utama, dikaitkan ke \pagenumbering:
+%  - \pagenumbering{roman}  (front matter) -> gaya "plain": SEMUA halaman
+%    front matter bernomor di BAWAH-TENGAH, seperti semula.
+%  - \pagenumbering{arabic} (isi utama)    -> gaya "fancy": halaman biasa
+%    di KANAN ATAS, sedangkan pembuka BAB tetap di bawah-tengah (plain).
+% Halaman ber-\thispagestyle{empty} (sampul, formulir) tetap tanpa nomor.
+\let\origpagenumberingsaved\pagenumbering
+\renewcommand{\pagenumbering}[1]{%
+  \origpagenumberingsaved{#1}%
+  \ifstrequal{#1}{arabic}{\pagestyle{fancy}}{\pagestyle{plain}}%
+}
+
+%------------------------------------------------------------------
+% 5. DAFTAR ISI, GAMBAR, TABEL, DAN LAMPIRAN
+%------------------------------------------------------------------
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\hfill\Large\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftloftitlefont}{\hfill\Large\bfseries}
+\renewcommand{\cftafterloftitle}{\hfill}
+\renewcommand{\cftlottitlefont}{\hfill\Large\bfseries}
+\renewcommand{\cftafterlottitle}{\hfill}
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftchappagefont}{\bfseries}
+\renewcommand{\cftchapdotsep}{\cftdotsep}   % titik-titik pada entri bab
+
+% Daftar Lampiran (tidak disediakan kelas report, dibuat dengan tocloft)
+\newlistof{lampiran}{lap}{\judullampiran}
+\renewcommand{\cftlaptitlefont}{\hfill\Large\bfseries}
+\renewcommand{\cftafterlaptitle}{\hfill}
+% Cara memakai: \daftarlampiran{Lampiran A  Instrumen Penelitian}
+\newcommand{\daftarlampiran}[1]{\addcontentsline{lap}{lampiran}{#1}}
+
+%------------------------------------------------------------------
+% 6. GAMBAR
+%------------------------------------------------------------------
+\usepackage{graphicx}
+\graphicspath{{gambar/}}
+\usepackage{float}                        % penempatan [H]
+\usepackage{subcaption}                   % gambar berdampingan (a)(b)
+\usepackage{pdflscape}                    % halaman lanskap (ikut memutar PDF)
+\usepackage{adjustbox}                    % menyesuaikan objek terlalu lebar
+
+\usepackage[font=small,labelsep=space,justification=centering]{caption}
+% Keterangan gambar di BAWAH gambar, keterangan tabel di ATAS tabel
+\captionsetup[figure]{position=below}
+\captionsetup[table]{position=above}
+% Penomoran mengikuti bab: Gambar 2.1, Tabel 4.3
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
+
+% Perintah bantu untuk mencantumkan sumber di bawah gambar/tabel
+\newcommand{\sumber}[1]{%
+  \begin{center}\vspace{-0.6em}\footnotesize \katasumber: #1\end{center}}
+
+% Penanda DATA YANG BELUM DIISI.
+% Menghasilkan teks merah tebal di dalam kurung siku sehingga mustahil
+% terlewat saat naskah dibaca ulang. Ganti dengan angka sebenarnya,
+% lalu hapus perintah ini.
+% Pemakaian: \belumdiisi{N} atau \belumdiisi{skor SUS}
+\newcommand{\belumdiisi}[1]{\textbf{\textcolor{red}{[#1]}}}
+
+% Kop formulir resmi FR-UAJ.
+% Pemakaian: \kopformulir{FR-UAJ-07-46/R0}
+%
+% Halaman formulir mewarisi margin buku (kiri 4 cm, atas 3 cm) yang
+% membuat kop terdorong ke tengah. Ketiga panjang di bawah menariknya
+% kembali ke sudut kiri atas agar benar-benar tampak sebagai kop, tanpa
+% mengubah margin isi formulir. Sesuaikan bila perlu.
+\newlength{\kopnaik}     \setlength{\kopnaik}{2.25cm}   % seberapa jauh ditarik ke atas
+\newlength{\kopkiri}     \setlength{\kopkiri}{1.6cm}    % seberapa jauh digeser ke kiri
+\newlength{\koplebar}    \setlength{\koplebar}{4.6cm}   % lebar gambar kop
+
+\newcommand{\kopformulir}[1]{%
+  \vspace*{-\kopnaik}%
+  \noindent\hspace*{-\kopkiri}%
+  \begin{minipage}{\dimexpr\textwidth+\kopkiri\relax}%
+    \noindent
+    \begin{minipage}[t]{\dimexpr\koplebar+2mm\relax}%
+      \vspace{0pt}\includegraphics[width=\koplebar]{kop-uaj}%
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{5cm}%
+      \vspace{2pt}\raggedleft\textbf{#1}%
+    \end{minipage}%
+  \end{minipage}%
+  \par\vspace{1.4em}}
+
+% Baris isian formulir (tanpa garis bawah).
+% Pemakaian: \isianform{NAMA}{Budi Santoso}
+%
+% Lebar kolom label 4,8 cm dipilih agar label terpanjang "JUDUL TUGAS
+% AKHIR" (tebal) muat penuh dan tidak menabrak tanda titik dua. Semua
+% titik dua pada formulir jadi rata satu garis.
+\newcommand{\isianform}[2]{%
+  \noindent\makebox[4.8cm][l]{#1}: #2\par}
+
+% Baris lanjutan (tanpa label), untuk isian yang lebih dari satu baris.
+\newcommand{\isianlanjut}[1]{%
+  \noindent\makebox[4.8cm][l]{}\phantom{: }#1\par}
+
+% Isian judul yang MEMBUNGKUS OTOMATIS dari \judulid / \judulen.
+% Judul panjang tidak perlu dipecah manual: teks mengalir mengikuti lebar
+% kotak 8,6 cm dan berpindah baris sendiri, sejajar dengan kolom label.
+% Gaya mengikuti halaman Pengesahan dan Keaslian (teks membungkus biasa).
+% Pemakaian: \isianjudul{JUDUL TUGAS AKHIR}{\judulid}
+\newcommand{\isianjudul}[2]{%
+  \noindent\makebox[4.8cm][l]{#1}: %
+  \parbox[t]{8.6cm}{\raggedright\setstretch{1.5}#2\par}\par}
+
+% Penanda gambar yang BELUM tersedia berkasnya.
+% Menghasilkan kotak bergaris putus-putus yang mustahil terlewat,
+% sekaligus tetap terdaftar pada Daftar Gambar dan dapat dirujuk \cref.
+% Pemakaian: \gambarbelumada{Keterangan gambar}{fig:label}
+% Setelah berkas gambar tersedia, ganti dengan \includegraphics biasa.
+\usepackage{tikz}
+\newcommand{\gambarbelumada}[2]{%
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      \draw[dashed,line width=0.9pt,color=gray]
+        (0,0) rectangle (0.72\linewidth,4.2cm);
+      \node[align=center,text=gray] at (0.36\linewidth,2.1cm)
+        {\footnotesize\ttfamily [ BERKAS GAMBAR BELUM TERSEDIA ]\\[2pt]
+         \footnotesize\rmfamily #1};
+    \end{tikzpicture}
+    \caption{#1}
+    \label{#2}
+  \end{figure}}
+
+%------------------------------------------------------------------
+% 7. TABEL
+%------------------------------------------------------------------
+\usepackage{longtable}                    % tabel bersambung antar halaman
+\usepackage{multirow}                     % sel gabung vertikal
+\usepackage{tabularx}                     % kolom lebar otomatis (tipe X)
+\usepackage{threeparttable}               % tabel dengan catatan kaki
+\usepackage{booktabs}                     % garis tabel gaya ilmiah
+\usepackage{array}
+\renewcommand{\arraystretch}{1.15}
+
+%------------------------------------------------------------------
+% 8. PERSAMAAN
+%------------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
+
+%------------------------------------------------------------------
+% 9. KODE PROGRAM DAN PSEUDOCODE
+%------------------------------------------------------------------
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\definecolor{kodeabu}{RGB}{120,128,138}
+\definecolor{kodehijau}{RGB}{0,110,60}
+\definecolor{kodebiru}{RGB}{20,60,160}
+\definecolor{kodelatar}{RGB}{247,248,250}
+\lstset{
+    backgroundcolor=\color{kodelatar},
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{kodebiru}\bfseries,
+    commentstyle=\color{kodeabu}\itshape,
+    stringstyle=\color{kodehijau},
+    numbers=left, numberstyle=\tiny\color{kodeabu}, numbersep=8pt,
+    frame=single, rulecolor=\color{kodeabu},
+    breaklines=true, breakatwhitespace=false,
+    showstringspaces=false, tabsize=4,
+    captionpos=b, xleftmargin=16pt, framexleftmargin=16pt,
+    literate={-}{-}1 {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1
+}
+\renewcommand{\lstlistingname}{Kode Program}
+% Penomoran kode program mengikuti bab: Kode Program 4.1, 4.2, dst.
+\AtBeginDocument{\counterwithin{lstlisting}{chapter}}
+
+% CATATAN: agar tidak meluber ke tepi halaman, usahakan setiap baris
+% kode tidak lebih dari sekitar 60 karakter.
+
+\usepackage[ruled,linesnumbered,lined]{algorithm2e}
+\SetKwInput{KwMasukan}{Masukan}
+\SetKwInput{KwKeluaran}{Keluaran}
+\SetAlgorithmName{Algoritma}{Algoritma}{Daftar Algoritma}
+% Penomoran algoritma mengikuti bab: Algoritma 3.1, 3.2, dst.
+\AtBeginDocument{\counterwithin{algocf}{chapter}}
+
+%------------------------------------------------------------------
+% 10. DAFTAR (BULLET DAN NOMOR) RAPAT
+%------------------------------------------------------------------
+\usepackage{enumitem}
+\newenvironment{daftarnomor}
+  {\begin{enumerate}[topsep=2pt,itemsep=1pt,parsep=0pt,leftmargin=*]}
+  {\end{enumerate}}
+\newenvironment{daftarpoin}
+  {\begin{itemize}[topsep=2pt,itemsep=1pt,parsep=0pt,leftmargin=*]}
+  {\end{itemize}}
+
+%------------------------------------------------------------------
+% 11. SITASI DAN DAFTAR PUSTAKA
+% Gaya diatur lewat \gayasitasi pada a0-identitas.tex
+%------------------------------------------------------------------
+\usepackage[round,authoryear]{natbib}
+\bibpunct{(}{)}{;}{a}{,}{,}
+\setlength{\bibhang}{1.27cm}              % indentasi gantung daftar pustaka
+\setlength{\bibsep}{6pt}
+\renewcommand{\bibsection}{}              % judul diatur manual di xx-daftarpustaka
+\bibliographystyle{\gayasitasi}
+
+%------------------------------------------------------------------
+% 12. PRANALA DAN RUJUKAN SILANG
+%------------------------------------------------------------------
+\usepackage[hidelinks,bookmarks=true]{hyperref}
+\usepackage{cleveref}
+\crefname{figure}{Gambar}{Gambar}
+\Crefname{figure}{Gambar}{Gambar}
+\crefname{table}{Tabel}{Tabel}
+\Crefname{table}{Tabel}{Tabel}
+\crefname{equation}{Persamaan}{Persamaan}
+\Crefname{equation}{Persamaan}{Persamaan}
+\crefname{lstlisting}{Kode Program}{Kode Program}
+\Crefname{lstlisting}{Kode Program}{Kode Program}
+\crefname{algocf}{Algoritma}{Algoritma}
+\Crefname{algocf}{Algoritma}{Algoritma}
+\crefname{section}{Subbab}{Subbab}
+\Crefname{section}{Subbab}{Subbab}
+\crefname{chapter}{Bab}{Bab}
+\Crefname{chapter}{Bab}{Bab}
+
+% Kata sambung Bahasa Indonesia untuk rujukan jamak
+\newcommand{\crefpairconjunction}{ dan }
+\newcommand{\crefmiddleconjunction}{, }
+\newcommand{\creflastconjunction}{, dan }
+\newcommand{\crefrangeconjunction}{--}
+
+% Rujukan silang ke rumusan masalah (RQ).
+% Memakai \crefformat agar hasilnya "RQ1" tanpa spasi, bukan "RQ 1".
+\crefformat{rq}{\labelrq#2#1#3}
+\Crefformat{rq}{\labelrq#2#1#3}
+\crefmultiformat{rq}{\labelrq#2#1#3}{ dan \labelrq#2#1#3}{, \labelrq#2#1#3}{, dan \labelrq#2#1#3}
+
+% Bila naskah berbahasa Inggris, definisi di atas ditimpa di sini.
+\ifdefstring{\bahasanaskah}{en}{%
+    \crefname{figure}{Figure}{Figures}\Crefname{figure}{Figure}{Figures}%
+    \crefname{table}{Table}{Tables}\Crefname{table}{Table}{Tables}%
+    \crefname{equation}{Equation}{Equations}\Crefname{equation}{Equation}{Equations}%
+    \crefname{section}{Section}{Sections}\Crefname{section}{Section}{Sections}%
+    \crefname{chapter}{Chapter}{Chapters}\Crefname{chapter}{Chapter}{Chapters}%
+    \crefname{lstlisting}{Code}{Codes}\Crefname{lstlisting}{Code}{Codes}%
+    \crefname{algocf}{Algorithm}{Algorithms}\Crefname{algocf}{Algorithm}{Algorithms}%
+    \renewcommand{\crefpairconjunction}{ and }%
+    \renewcommand{\creflastconjunction}{, and }%
+    \crefmultiformat{rq}{\labelrq#2#1#3}{ and \labelrq#2#1#3}{, \labelrq#2#1#3}{, and \labelrq#2#1#3}%
+}{}
+\crefname{tuj}{Tujuan}{Tujuan}
+\Crefname{tuj}{Tujuan}{Tujuan}
+
+% Penomoran otomatis rumusan masalah dan tujuan.
+% Pemakaian:  \begin{rumusanmasalah} \item Pertanyaan\label{rq:kualitas} ... \end{rumusanmasalah}
+% Merujuknya: \cref{rq:kualitas}  ->  menghasilkan "RQ1"
+\newcounter{rq}
+\renewcommand{\therq}{\arabic{rq}}
+% Catatan penyetelan: agar label RQ sejajar dengan nomor subbab, posisi
+% awal label harus nol. Pada lingkungan list, label mulai di
+% (leftmargin - labelsep - labelwidth), sehingga ketiganya diatur agar
+% leftmargin = labelsep + labelwidth. Tanpa ini label menjorok ke kiri
+% sejauh \labelsep dan tidak rata dengan judul subbab.
+\newenvironment{rumusanmasalah}
+  {\setcounter{rq}{0}%
+   \begin{list}{\labelrq\therq.}{\usecounter{rq}%
+     \setlength{\labelwidth}{\lebarlabelrq}\setlength{\labelsep}{0.5em}%
+     \setlength{\leftmargin}{\dimexpr\lebarlabelrq+0.5em\relax}%
+     \setlength{\rightmargin}{0pt}\setlength{\listparindent}{0pt}%
+     \setlength{\topsep}{3pt}\setlength{\itemsep}{2pt}\setlength{\parsep}{0pt}%
+     \renewcommand{\makelabel}[1]{##1\hfill}}}
+  {\end{list}}
+
+\newcounter{tuj}
+\renewcommand{\thetuj}{\arabic{tuj}}
+\newenvironment{daftartujuan}
+  {\setcounter{tuj}{0}%
+   \begin{list}{\labeltujuan\thetuj.}{\usecounter{tuj}%
+     \setlength{\labelwidth}{\lebarlabelrq}\setlength{\labelsep}{0.5em}%
+     \setlength{\leftmargin}{\dimexpr\lebarlabelrq+0.5em\relax}%
+     \setlength{\rightmargin}{0pt}\setlength{\listparindent}{0pt}%
+     \setlength{\topsep}{3pt}\setlength{\itemsep}{2pt}\setlength{\parsep}{0pt}%
+     \renewcommand{\makelabel}[1]{##1\hfill}}}
+  {\end{list}}
+
+%------------------------------------------------------------------
+% 13. LAIN-LAIN
+%------------------------------------------------------------------
+\usepackage{lipsum}                       % teks contoh (boleh dihapus)
+\usepackage{ragged2e}
+\usepackage{lastpage}

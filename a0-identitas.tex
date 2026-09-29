@@ -1,0 +1,111 @@
+%==================================================================
+% DATA TUGAS AKHIR — SATU-SATUNYA BERKAS YANG WAJIB DIISI
+%
+% Seluruh halaman sampul, persetujuan, pengesahan, dan pernyataan
+% mengambil datanya dari sini. Tidak perlu mengetik ulang di tempat lain.
+%==================================================================
+
+%------------------------------------------------------------------
+% BAHASA NASKAH
+% id : istilah struktural Bahasa Indonesia (BAB, Gambar, Tabel)
+% en : istilah struktural Bahasa Inggris (CHAPTER, Figure, Table)
+%
+% Halaman legal (persetujuan, pengesahan, pernyataan) tetap Bahasa
+% Indonesia pada kedua pilihan, karena merupakan dokumen resmi institusi.
+%------------------------------------------------------------------
+\newcommand{\bahasanaskah}{id}
+
+%------------------------------------------------------------------
+% LABEL RUMUSAN MASALAH DAN TUJUAN
+% Menentukan awalan label pada daftar rumusan masalah dan tujuan,
+% sekaligus pada seluruh rujukan \cref di dalam naskah.
+% Contoh: ubah menjadi P dan T, atau RM dan TP, sesuai kelaziman prodi.
+%------------------------------------------------------------------
+\newcommand{\labelrq}{}      % menghasilkan RQ1, RQ2, ...
+\newcommand{\labeltujuan}{}   % menghasilkan T1, T2, ...
+
+% Lebar kotak label. Bawaan 2.4em pas untuk "RQ1." dan "T1.".
+% Bila kedua label di atas dikosongkan sehingga tampil sebagai nomor
+% biasa, sempitkan menjadi 0.75em agar indentasinya sama dengan daftar
+% bernomor lain di dalam naskah.
+\newcommand{\lebarlabelrq}{2.4em}
+
+%------------------------------------------------------------------
+% GAYA SITASI
+%
+% apalike-id : APA nama-tahun dengan kata sambung "dan" (BAWAAN, teruji).
+%              Berkas apalike-id.bst disertakan dalam template ini.
+% apalike    : sama, tetapi kata sambungnya "and" (bawaan LaTeX).
+% apacite    : APA yang lebih ketat. Perlu paket apacite, tersedia di
+%              Overleaf dan MiKTeX penuh tetapi tidak pada semua
+%              instalasi. Bila dipakai, aktifkan juga baris
+%              \usepackage{apacite} pada xx-preambles.tex bagian 11.
+%------------------------------------------------------------------
+\newcommand{\gayasitasi}{apalike-id}
+% \newcommand{\gayasitasi}{apalike}
+% \newcommand{\gayasitasi}{apacite}
+
+%------------------------------------------------------------------
+% IDENTITAS
+%------------------------------------------------------------------
+\newcommand{\judulid}{Implementasi Diegetic Latency Masking pada NPC sebagai Mekanisme Penanganan Latensi Respons pada Game Eksplorasi Kampus}
+\newcommand{\judulen}{Implementing Diegetic Latency Masking in NPCs as a Response Latency Mitigation Mechanism for a Campus Exploration Game}
+\newcommand{\penulis}{Marco Benedictus Tirtaatmadja}
+\newcommand{\nim}{202304560040}
+
+\newcommand{\tipe}{Tugas Akhir}
+\newcommand{\type}{Undergraduate Thesis}
+\newcommand{\gelar}{Sarjana Komputer}
+\newcommand{\prodi}{Sistem Informasi}
+\newcommand{\fakultas}{Fakultas Biosains, Teknologi, dan Inovasi}
+\newcommand{\universitas}{Universitas Katolik Indonesia Atma Jaya}
+\newcommand{\gelaren}{Bachelor of Computer Science}
+\newcommand{\prodien}{Information Systems Study Program}
+\newcommand{\fakultasen}{School of Bioscience, Technology, and Innovation}
+\newcommand{\universitasen}{Atma Jaya Catholic University of Indonesia}
+\newcommand{\kota}{Jakarta}
+\newcommand{\tahun}{2026}
+
+%------------------------------------------------------------------
+% DATA UNTUK FORMULIR RESMI (FR-UAJ)
+% Hanya diperlukan bila formulir resmi ikut disertakan.
+%------------------------------------------------------------------
+\newcommand{\stid}{12023003387}              % St. ID mahasiswa
+\newcommand{\kotaformulir}{Tangerang}        % kota pada formulir resmi
+\newcommand{\tglujian}{3 Februari 2026}      % tanggal ujian/sidang TA
+\newcommand{\periodeujian}{Februari / 2026}  % periode ujian (bulan / tahun)
+\newcommand{\tglkoreksi}{Januari 2026}       % tanggal pada formulir pernyataan pembimbing
+
+%------------------------------------------------------------------
+% TANGGAL
+%------------------------------------------------------------------
+\newcommand{\tglpersetujuan}{15 Juni 2026}
+\newcommand{\tglpersetujuandua}{15 Juni 2026}
+\newcommand{\tglpengesahan}{15 Juli 2026}
+\newcommand{\tglpernyataan}{15 Juli 2026}
+
+%------------------------------------------------------------------
+% DOSEN DAN PEJABAT
+%------------------------------------------------------------------
+\newcommand{\pembimbing}{Ir. Julius Victor Manuel Bata, S.Kom., M.T.}
+\newcommand{\NIPpembimbing}{120181818}
+
+% Jumlah pembimbing: 1 atau 2. Mengatur Lembar Persetujuan dan formulir FR-UAJ.
+\newcommand{\jumlahpembimbing}{1}
+\newcommand{\pembimbingdua}{Nama Pembimbing II, S.Kom., M.Kom.}
+\newcommand{\NIPpembimbingdua}{000000000}
+
+\newcommand{\ketuapenguji}{Nama Ketua Penguji, S.Kom., M.T.}
+\newcommand{\sekretaris}{Nama Sekretaris Penguji, S.Kom., M.T.}
+\newcommand{\penguji}{Nama Anggota Penguji, S.Kom., M.T.}
+
+\newcommand{\koorprodi}{Gregorius Airlangga, S.Kom., M.T., Ph.D.}
+\newcommand{\NIPkoorprodi}{000000000}
+\newcommand{\dekan}{Nama Dekan, S.T., M.T., Ph.D.}
+\newcommand{\NIPdekan}{000000000}
+
+%------------------------------------------------------------------
+% KATA KUNCI
+%------------------------------------------------------------------
+\newcommand{\katakunci}{diegetic latency masking, NPC behavior, response latency, campus exploration game.}
+\newcommand{\keywords}{diegetic latency masking, perilaku NPC, latensi respons, game explorasi kampus.}

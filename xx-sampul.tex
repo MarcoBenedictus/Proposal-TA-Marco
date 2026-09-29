@@ -1,0 +1,38 @@
+%==================================================================
+% SAMPUL LUAR  (Bahasa Indonesia — mengikuti contoh hal. 1)
+% Datanya dari a0-identitas.tex
+%==================================================================
+\thispagestyle{empty}
+\begin{center}
+    \ifdefstring{\jenisnaskah}{proposal}{%
+        % ---- PROPOSAL: label "PROPOSAL TUGAS AKHIR" di ATAS judul (mengikuti contoh) ----
+        \MakeUppercase{\labeltipe}\\[1.5cm]
+        \begin{spacing}{1.5}
+            \textbf{\large \MakeUppercase{\judulid}}\\[1.5cm]
+        \end{spacing}
+    }{%
+        % ---- TUGAS AKHIR: judul di ATAS label ----
+        \begin{spacing}{1.5}
+            \textbf{\large \MakeUppercase{\judulid}}\\[1.5cm]
+        \end{spacing}
+        \textbf{\MakeUppercase{\labeltipe}}\\[0.3cm]
+        \ifdefempty{\submitline}{}{\textbf{\submitline}\\[1.5cm]}
+    }
+
+    % Logo diatur dengan HEIGHT (bukan width) agar tinggi sampul tetap
+    % sama untuk logo berbentuk bujur sangkar maupun memanjang.
+    \includegraphics[height=3.2cm]{logo-institusi}\\[1.5cm]
+
+    \textbf{Disusun oleh:}\\
+    \textbf{\MakeUppercase{\penulis}}\\
+    \textbf{\nim}
+
+    \vfill
+
+    \textbf{\MakeUppercase{Program Studi \prodi}}\\
+    \textbf{\MakeUppercase{\fakultas}}\\
+    \textbf{\MakeUppercase{\universitas}}\\
+    \textbf{\MakeUppercase{JAKARTA}}\\
+    \textbf{\tahun}
+\end{center}
+\clearpage

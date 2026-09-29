@@ -1,0 +1,32 @@
+%==================================================================
+% SAMPUL DALAM  (Bahasa Inggris — mengikuti contoh hal. 2)
+% Variabel Bahasa Inggris didefinisikan di a0-identitas.tex
+%==================================================================
+\thispagestyle{empty}
+\begin{center}
+    \begin{spacing}{1.5}
+        \textbf{\large \MakeUppercase{\judulen}}\\[1.5cm]
+    \end{spacing}
+
+    \textbf{\MakeUppercase{\labeltype}}\\[0.3cm]
+
+    \ifdefempty{\submitlineen}{}{\textbf{\submitlineen}\\[1.5cm]}
+
+    % Logo diatur dengan HEIGHT (bukan width) agar tinggi sampul tetap
+    % sama untuk logo berbentuk bujur sangkar maupun memanjang.
+    \includegraphics[height=3.2cm]{logo-institusi}\\[1.5cm]
+
+    \textbf{Submitted by:}\\
+    \textbf{\MakeUppercase{\penulis}}\\
+    \textbf{\nim}
+
+    \vfill
+
+    \textbf{\MakeUppercase{\prodien}}\\
+    \textbf{\MakeUppercase{\fakultasen}}\\
+    \textbf{\MakeUppercase{\universitasen}}\\
+    \textbf{\MakeUppercase{JAKARTA}}\\
+    \textbf{\tahun}
+\end{center}
+\clearpage
+\setcounter{page}{2}

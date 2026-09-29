@@ -1,0 +1,91 @@
+%==================================================================
+% BAB 2 — TINJAUAN PUSTAKA
+%==================================================================
+
+\chapter{TINJAUAN PUSTAKA}
+
+\section{Tinjauan Pustaka}
+
+% CATATAN PENTING
+% Gunakan MATRIKS SINTESIS, bukan tabel per-penelitian dengan kolom
+% "perbedaan dengan penelitian ini". Pada matriks, celah penelitian
+% TERLIHAT sebagai pola (kolom yang kosong di semua baris), sehingga
+% Anda cukup menuliskan apa yang tampak — tidak perlu mengarang kebaruan.
+%
+% Kolom dipilih berdasarkan relevansinya dengan rumusan masalah Anda.
+% Empat sampai enam penelitian yang benar-benar dibedah jauh lebih baik
+% daripada lima belas yang sekadar didaftar.
+
+Bagian ini menyintesiskan penelitian-penelitian terdahulu yang relevan dengan penanganan latensi dialog NPC, antarmuka diegetik, dan pengalaman pengguna (\textit{user experience}). Sintesis disajikan pada \cref{tab:sintesis} untuk memperlihatkan posisi dan celah penelitian.
+
+\begin{table}[H]
+    \centering
+    \caption{Matriks sintesis penelitian terdahulu}
+    \label{tab:sintesis}
+    \footnotesize
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{|p{2.2cm}|p{2.5cm}|p{2.5cm}|p{2.2cm}|p{2.5cm}|p{2.3cm}|}
+        \hline
+        \textbf{Penelitian} & \textbf{Konteks/Objek \textit{Game}} & \textbf{Sumber/Beban Latensi} & \textbf{Bentuk Antarmuka Pemrosesan} & \textbf{Mekanisme \textit{Latency Masking}} & \textbf{Metrik Evaluasi} \\ \hline
+
+        \citet{siahaan2026retrieval} & Dialog NPC \& generasi \textit{quest} pada RPG C++ & Pemrosesan inferensi model lokal (23,5--220,5 detik) & \textit{Non-Diegetic} (\textit{Console Output}) & Tidak ada penyamaran latensi & Hanya evaluasi akurasi RAG \\ \hline
+
+        \citet{wei2025mind} & NPC pembangun pada \textit{game survival} 3D \textit{Echoshell} & Pemrosesan kognitif LLM & \textit{Diegetic} \& \textit{Non-Diegetic} & Pemisahan \textit{thread Mind \& Body} & Tidak mengukur \textit{perceived latency} \\ \hline
+
+        \citet{mckee2026designing} & Sistem dialog terbuka NPC \textit{Outbound Sales} & Pemrosesan teks bebas \textit{open dialogue} & \textit{Non-Diegetic} (UI \textit{Box}) & Menunggu pemrosesan teks & Hanya evaluasi transkrip \\ \hline
+
+        \citet{zaera2025efficient} & Deteksi \textit{out-of-scope} pada \textit{chatbot} dialog & \textit{Routing} kepastian kueri & \textit{Non-Diegetic} (\textit{Chat Interface}) & Tidak ada & Hanya evaluasi \textit{F1-Score} \\ \hline
+
+        \citet{andersson2024effects} & Pengaruh UI diegetik vs \textit{non-diegetic} pada \textit{game demo} & Pemrosesan sistem \textit{game} statis & \textit{Diegetic} UI & Hanya untuk menu/inventaris & Mengukur \textit{Immersion \& Usability} \\ \hline
+
+        \textbf{Penelitian Ini} & NPC \textit{Game} 2D Eksplorasi Kampus & Jeda Respons NPC & \textit{Diegetic} & Animasi Kontekstual (\textit{Asynchronous}) & Pengujian \textit{Perceived Latency, Immersion}, \& Retensi \\ \hline
+    \end{tabular}
+\end{table}
+
+% Paragraf berikut MEMBACA POLA pada matriks, lalu menyatakan posisi
+% penelitian. Perhatikan bahwa celah dinyatakan berdasarkan apa yang
+% terlihat pada tabel, bukan diklaim begitu saja.
+Berdasarkan \cref{tab:sintesis}, terlihat pola celah penelitian (\textit{research gap}) yang mendasari posisi penelitian ini. Pertama, pola ketiadaan penyamaran latensi pada sistem dialog NPC. Penelitian oleh \citet{park2023generative}, \citet{siahaan2026retrieval}, serta \citet{mckee2026designing} secara konsisten mengidentifikasi bahwa pemrosesan dialog NPC menghasilkan durasi waktu komputasi yang panjang. Namun, tidak adanya mekanisme antarmuka visual yang menyamarkan waktu tunggu tersebut memicu masalah agen yang membeku (\textit{frozen agent}).
+
+Kedua, pola batasan antarmuka diegetik. \citet{andersson2024effects} membuktikan bahwa \textit{Diegetic} UI sangat efektif meningkatkan \textit{player immersion}. Namun, penerapannya sejauh ini hanya terbatas pada elemen visual statis seperti inventaris atau indikator kesehatan, tanpa pernah dimanfaatkan sebagai mekanisme penyamaran waktu tunggu (\textit{latency masking}).
+
+Ketiga, pola ketiadaan pengukuran \textit{perceived latency}. Walaupun \citet{wei2025mind} berhasil memisahkan proses kognitif dan eksekusi fisik NPC (\textit{Mind and Body}), penelitian tersebut tidak mengukur dampak persepsi waktu tunggu (\textit{perceived latency}) dan retensi pemain melalui \textit{playtesting}.
+
+Penelitian ini mengisi celah tersebut dengan mengimplementasikan animasi kontekstual NPC secara \textit{asynchronous} sebagai bentuk \textit{Diegetic Latency Masking}, serta menguji dampaknya terhadap \textit{perceived latency}, \textit{player immersion}, dan retensi pemain dibandingkan indikator \textit{non-diegetic} konvensional.
+
+\section{Landasan Teori}
+% Susun subbab sesuai konsep utama penelitian Anda. Tiap subbab memuat
+% definisi, unsur pokok, dan rujukannya. Hindari menyalin definisi
+% panjang; ringkas dengan bahasa sendiri lalu sitasi sumbernya.
+
+\subsection{\textit{Diegetic User Interface} (\textit{Diegetic} UI)}
+Antarmuka diegetik (\textit{Diegetic User Interface}) adalah elemen antarmuka pengguna yang terdapat dan terintegrasi secara fisik serta geometris di dalam dunia fiksi cerita permainan, sehingga dapat dilihat dan diinteraksi oleh karakter di dalam \textit{game} maupun oleh pemain \citep{andersson2024effects}. Berbeda dengan antarmuka \textit{non-diegetic} (seperti \textit{overlay} HUD, \textit{loading bar}, atau teks indikator pemuatan), antarmuka diegetik mempertahankan kehadiran spasial (\textit{spatial presence}) dan imersi naratif (\textit{player immersion}) karena tidak menarik perhatian pemain keluar dari dunia fiksi \citep{andersson2024effects}.
+
+\subsection{\textit{Latency Masking} dan \textit{Perceived Latency} dalam HCI}
+Dalam konteks \textit{Human-Computer Interaction} (HCI), latensi dapat dibedakan menjadi \textit{objective latency} (durasi waktu tunggu riil dalam detik) dan \textit{perceived latency} (durasi waktu tunggu yang dirasakan secara subjektif oleh pengguna). \textit{Latency Masking} adalah teknik rekayasa antarmuka untuk memanipulasi perhatian pengguna (\textit{attentional bias}) selama jeda komputasi berlangsung. Dengan memberikan umpan balik visual yang bermakna dan relevan secara konteks di dalam dunia permainan, \textit{perceived latency} dapat dikurangi secara signifikan meskipun \textit{objective latency} sistem tetap sama.
+
+\subsection{\textit{Asynchronous State} dan \textit{Execution} dalam \textit{Game Engine}}
+Dalam arsitektur \textit{game engine}, eksekusi logika permainan berjalan berbasis \textit{frame-by-frame}. Untuk mencegah kondisi \textit{frozen agent} saat sistem sedang menunggu pemrosesan respons di latar belakang, \textit{game engine} menerapkan pemisahan \textit{thread} secara \textit{asynchronous} \citep{wei2025mind}. Melalui pola ini, \textit{state machine} animasi fisik NPC tetap mengeksekusi \textit{loop} animasi kontekstual (seperti pergerakan navigasi ke koordinat tertentu) di \textit{main thread}, sementara proses komputasi respons berjalan secara \textit{asynchronous} di \textit{background thread} \citep{wei2025mind}.
+
+\subsection{\textit{Player Immersion} dan \textit{Player Experience} (PX)}
+\textit{Player immersion} merujuk pada tingkat keterlibatan mental, emosional, dan persepsi pemain di mana ia merasa terhubung secara mendalam dengan dunia fiksi permainan \citep{andersson2024effects}. Penggunaan antarmuka \textit{non-diegetic} konvensional saat jeda waktu komputasi sering kali memutus aliran pengalaman (\textit{flow}) pemain. Penerapan antarmuka diegetik yang relevan dengan konteks narasi terbukti dapat mempertahankan \textit{player immersion} dan meningkatkan kualitas pengalaman bermain (\textit{player experience}) secara keseluruhan \citep{andersson2024effects}.
+
+\section{Justifikasi Pemilihan Metode}
+% SUBBAB INI SERING DILUPAKAN, PADAHAL PALING PENTING.
+% Deskriptor KKNI jenjang 6 menuntut kemampuan memilih alternatif solusi
+% secara sadar. Di sinilah kemampuan itu dibuktikan.
+% Bandingkan minimal dua alternatif, lalu nyatakan alasan pemilihan Anda.
+
+Sesuai dengan standar analisis kualifikasi KKNI Jenjang 6, subbab ini memberikan justifikasi rasional ilmiah terhadap alternatif solusi yang dipilih:
+
+\subsection{Justifikasi Pemilihan Antarmuka Penanganan Latensi}
+\begin{itemize}
+    \item \textbf{Alternatif A: \textit{Non-Diegetic Indicator} (\textit{Loading Bar} / Teks "\textit{Thinking...}")}. Menampilkan komponen visual antarmuka konvensional di atas layar permainan saat \textit{backend} sedang memproses respons. Kelemahan pendekatan ini adalah memutus alur imersi naratif, membuat waktu tunggu terasa membosankan, dan secara eksplisit mengingatkan pemain akan keterbatasan teknis sistem \citep{andersson2024effects}.
+    \item \textbf{Alternatif B (Metode Terpilih): \textit{Diegetic Latency Masking} (Animasi Fisik Kontekstual NPC)}. Mengalihkan jeda waktu tunggu komputasi menjadi gerakan fisik kontekstual NPC di dalam dunia 2D. Metode ini dipilih karena mampu menyamarkan \textit{perceived latency} dengan membingkai waktu komputasi sebagai tindakan akting alami karakter di dalam cerita, sehingga menjaga \textit{player immersion} \citep{andersson2024effects, wei2025mind}.
+\end{itemize}
+
+\subsection{Justifikasi Pemilihan Metode Pengujian Pengalaman Pengguna}
+\begin{itemize}
+    \item \textbf{Alternatif A: Pengujian \textit{Usability} Terisolasi (\textit{System Usability Scale} / SUS saja)}. Hanya mengukur kebiasaan dan kemudahan penggunaan antarmuka secara umum melalui kuesioner baku SUS. Kelemahannya adalah kurang sensitif dalam mengukur aspek persepsi waktu (\textit{time perception}), tingkat imersi naratif, dan keterlibatan emosional pemain dalam \textit{game} \citep{andersson2024effects}.
+    \item \textbf{Alternatif B (Metode Terpilih): A/B \textit{Testing} dengan \textit{Playtesting} \& Kuesioner Subjektif \textit{Perceived Latency/Immersion}}. Menguji dua kelompok perlakuan (Skenario A: \textit{Non-Diegetic} vs Skenario B: \textit{Diegetic Masking}) dengan durasi jeda waktu komputasi yang diisolasi (\textit{controlled latency}), dilanjutkan dengan pengisian kuesioner \textit{player immersion} dan persepsi waktu tunggu. Pendekatan ini dipilih karena dapat menghasilkan data yang valid untuk membandingkan secara langsung efektivitas \textit{Diegetic Latency Masking} terhadap \textit{perceived latency} dan imersi pemain \citep{andersson2024effects}.
+\end{itemize}

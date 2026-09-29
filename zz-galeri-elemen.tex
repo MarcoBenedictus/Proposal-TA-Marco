@@ -1,0 +1,497 @@
+%==================================================================
+% GALERI ELEMEN
+%
+% Berkas ini berisi CONTOH SIAP SALIN untuk seluruh elemen yang lazim
+% dibutuhkan pada Tugas Akhir: berbagai jenis tabel, gambar, rumus,
+% kode program, pseudocode, dan pola sitasi.
+%
+% CARA MEMATIKANNYA
+% Beri tanda % pada baris \include{zz-galeri-elemen} di laporan.tex
+% sebelum naskah dikumpulkan. Berkas ini tidak akan ikut tercetak,
+% tetapi tetap tersimpan sebagai rujukan.
+%==================================================================
+
+% Galeri disertakan setelah lampiran, sehingga tanpa pengaturan ini
+% penomorannya akan ikut melanjutkan huruf lampiran (D, E, dst.).
+% Blok berikut membuatnya bernomor "G" agar jelas terpisah.
+\clearpage
+\setcounter{chapter}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{equation}{0}
+\renewcommand{\thechapter}{G}
+\renewcommand{\thesection}{G.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thefigure}{G.\arabic{figure}}
+\renewcommand{\thetable}{G.\arabic{table}}
+\renewcommand{\theequation}{G.\arabic{equation}}
+
+\chapter*{GALERI ELEMEN (HAPUS SEBELUM DIKUMPULKAN)}
+\addcontentsline{toc}{chapter}{GALERI ELEMEN (HAPUS SEBELUM DIKUMPULKAN)}
+
+Bab ini bukan bagian dari naskah Tugas Akhir. Isinya adalah contoh siap salin
+untuk seluruh elemen yang lazim dibutuhkan. Matikan dengan memberi tanda
+\texttt{\%} pada baris \texttt{\textbackslash include\{zz-galeri-elemen\}} di
+berkas \texttt{laporan.tex}.
+
+% ==================================================================
+\section{Tabel}
+% ==================================================================
+
+\subsection{Tabel biasa}
+Keterangan tabel diletakkan di \textbf{atas} tabel. Setiap tabel wajib diberi
+\texttt{\textbackslash label} dan disebut dalam teks, misalnya
+\cref{tab:g-biasa}.
+
+\begin{table}[H]
+    \centering
+    \caption{Contoh tabel biasa}
+    \label{tab:g-biasa}
+    \begin{tabular}{|c|l|c|}
+        \hline
+        \textbf{No} & \textbf{Keterangan} & \textbf{Nilai} \\ \hline
+        1 & Baris pertama & 3,12 \\ \hline
+        2 & Baris kedua   & 3,68 \\ \hline
+        3 & Baris ketiga  & 3,54 \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Tabel dengan garis gaya ilmiah (booktabs)}
+Sebagian program studi menghendaki tabel tanpa garis vertikal.
+
+\begin{table}[H]
+    \centering
+    \caption{Contoh tabel gaya booktabs}
+    \label{tab:g-booktabs}
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Dimensi} & \textbf{Kepentingan} & \textbf{Kinerja} \\
+        \midrule
+        \textit{Usability}           & 4,41 & 3,12 \\
+        \textit{Information quality} & 4,22 & 3,68 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Tabel bersambung antarhalaman (longtable)}
+Gunakan \texttt{longtable} bila tabel lebih panjang daripada satu halaman.
+Baris kepala akan diulang otomatis, dan halaman sambungan diberi keterangan
+``Lanjutan'' sesuai kelaziman naskah Indonesia.
+
+\begin{longtable}{|c|p{6.5cm}|c|c|}
+    \caption{Contoh tabel bersambung antarhalaman}
+    \label{tab:g-longtable} \\
+    \hline
+    \textbf{No} & \textbf{Pernyataan} & \textbf{Kepentingan} & \textbf{Kinerja} \\ \hline
+    \endfirsthead
+
+    \multicolumn{4}{l}{\footnotesize\textit{Lanjutan \cref{tab:g-longtable}}} \\
+    \hline
+    \textbf{No} & \textbf{Pernyataan} & \textbf{Kepentingan} & \textbf{Kinerja} \\ \hline
+    \endhead
+
+    \hline
+    \multicolumn{4}{r}{\footnotesize\textit{Bersambung ke halaman berikutnya}} \\
+    \endfoot
+
+    \hline
+    \endlastfoot
+
+    1  & Saya merasa sistem mudah dipelajari & 4,44 & 3,10 \\ \hline
+    2  & Interaksi dengan sistem jelas dan mudah dipahami & 4,38 & 3,21 \\ \hline
+    3  & Sistem mudah dioperasikan & 4,41 & 3,15 \\ \hline
+    4  & Navigasi antarhalaman terasa mudah & 4,61 & 3,03 \\ \hline
+    5  & Tampilan sistem sesuai dengan jenis layanannya & 4,02 & 3,44 \\ \hline
+    6  & Tampilan sistem menarik & 3,88 & 3,52 \\ \hline
+    7  & Sistem menyampaikan kesan kompeten & 4,12 & 3,40 \\ \hline
+    8  & Sistem menciptakan pengalaman yang menyenangkan & 3,95 & 3,33 \\ \hline
+    9  & Informasi yang disajikan akurat & 4,30 & 3,71 \\ \hline
+    10 & Informasi yang disajikan tepercaya & 4,28 & 3,69 \\ \hline
+    11 & Informasi selalu diperbarui & 4,19 & 3,58 \\ \hline
+    12 & Informasi relevan dengan kebutuhan & 4,25 & 3,66 \\ \hline
+    13 & Informasi mudah dipahami & 4,21 & 3,74 \\ \hline
+    14 & Informasi disajikan pada tingkat rincian yang tepat & 4,08 & 3,70 \\ \hline
+    15 & Informasi disajikan dalam format yang sesuai & 4,15 & 3,68 \\ \hline
+    16 & Sistem memberikan rasa aman & 4,09 & 3,61 \\ \hline
+    17 & Data pribadi terasa terlindungi & 4,18 & 3,55 \\ \hline
+    18 & Sistem memudahkan komunikasi dengan pengelola & 3,97 & 3,42 \\ \hline
+    19 & Sistem menciptakan rasa keterhubungan & 3,82 & 3,39 \\ \hline
+    20 & Layanan diberikan sesuai yang dijanjikan & 4,11 & 3,58 \\ \hline
+\end{longtable}
+
+\subsection{Tabel dengan sel gabung (multirow dan multicolumn)}
+
+\begin{table}[H]
+    \centering
+    \caption{Contoh tabel dengan sel gabung}
+    \label{tab:g-gabung}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \multirow{2}{*}{\textbf{Butir}} & \multicolumn{2}{c|}{\textbf{Sebelum}} & \multicolumn{2}{c|}{\textbf{Sesudah}} \\ \cline{2-5}
+         & \textbf{Rerata} & \textbf{SB} & \textbf{Rerata} & \textbf{SB} \\ \hline
+        B1 & 3,10 & 0,82 & 4,05 & 0,61 \\ \hline
+        B2 & 3,22 & 0,77 & 4,12 & 0,58 \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Tabel berkolom otomatis (tabularx)}
+Lebar kolom bertipe \texttt{X} menyesuaikan sendiri agar tabel tepat memenuhi
+lebar teks.
+
+\begin{table}[H]
+    \centering
+    \caption{Contoh tabel dengan lebar kolom otomatis}
+    \label{tab:g-tabularx}
+    \begin{tabularx}{\textwidth}{|c|X|X|}
+        \hline
+        \textbf{No} & \textbf{Temuan} & \textbf{Tindak lanjut} \\ \hline
+        1 & Menu utama tidak konsisten antarhalaman sehingga pengguna kehilangan orientasi. & Menyeragamkan struktur menu pada seluruh halaman. \\ \hline
+        2 & Pesan kesalahan tidak menjelaskan penyebab masalah. & Menulis ulang pesan kesalahan dengan bahasa yang spesifik. \\ \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Tabel dengan catatan kaki (threeparttable)}
+Gunakan bila tabel memerlukan keterangan simbol atau sumber.
+
+\begin{table}[H]
+    \centering
+    \begin{threeparttable}
+        \caption{Contoh tabel dengan catatan kaki}
+        \label{tab:g-catatan}
+        \begin{tabular}{|l|c|c|}
+            \hline
+            \textbf{Dimensi} & \textbf{Rerata} & \textbf{Kategori} \\ \hline
+            \textit{Usability}\tnote{a}           & 3,12 & Cukup \\ \hline
+            \textit{Information quality}          & 3,68 & Baik  \\ \hline
+            \textit{Service interaction}\tnote{b} & 3,54 & Baik  \\ \hline
+        \end{tabular}
+        \begin{tablenotes}\footnotesize
+            \item[a] Terdiri atas 8 butir pernyataan.
+            \item[b] Terdiri atas 7 butir pernyataan.
+            \item Sumber: Hasil pengolahan data penelitian (2026).
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}
+
+\subsection{Tabel yang terlalu lebar}
+Bila tabel sedikit melebihi lebar teks, perkecil jarak antarkolom dengan
+\texttt{\textbackslash tabcolsep} atau bungkus dengan \texttt{adjustbox}.
+
+\begin{table}[H]
+    \centering
+    \caption{Contoh tabel lebar yang dikecilkan otomatis}
+    \label{tab:g-lebar}
+    \footnotesize
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Butir} & \textbf{R1} & \textbf{R2} & \textbf{R3} & \textbf{R4} & \textbf{R5} & \textbf{R6} & \textbf{R7} & \textbf{R8} & \textbf{Rerata} & \textbf{Simpangan Baku} \\ \hline
+        B1 & 4 & 5 & 4 & 3 & 4 & 5 & 4 & 4 & 4,13 & 0,64 \\ \hline
+        B2 & 3 & 4 & 4 & 4 & 5 & 4 & 3 & 4 & 3,88 & 0,64 \\ \hline
+    \end{tabular}
+    \end{adjustbox}
+\end{table}
+
+\subsection{Tabel lanskap}
+Paket \texttt{pdflscape} ikut memutar halaman pada berkas PDF, sehingga pembaca
+tidak perlu memiringkan kepala.
+
+\begin{landscape}
+\begin{table}[H]
+    \centering
+    \caption{Contoh tabel pada halaman lanskap}
+    \label{tab:g-lanskap}
+    \footnotesize
+    \begin{tabular}{|c|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+        \hline
+        \textbf{No} & \textbf{Kondisi berjalan} & \textbf{Masalah} & \textbf{Usulan} & \textbf{Dampak yang diharapkan} \\ \hline
+        1 & Menu tersebar pada tiga tingkat & Pengguna kesulitan menemukan menu & Menyusun ulang menjadi dua tingkat & Waktu pencarian menu berkurang \\ \hline
+        2 & Alur pengisian tidak menampilkan tahapan & Pengguna tidak tahu posisinya & Menambahkan penanda tahapan & Kesalahan pengisian berkurang \\ \hline
+    \end{tabular}
+\end{table}
+\end{landscape}
+
+% ==================================================================
+\section{Gambar}
+% ==================================================================
+
+\subsection{Gambar tunggal}
+Keterangan gambar diletakkan di \textbf{bawah} gambar. Lihat
+\cref{fig:g-tunggal}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{contoh-diagram}
+    \caption{Contoh gambar tunggal}
+    \label{fig:g-tunggal}
+\end{figure}
+
+\subsection{Gambar dengan keterangan sumber}
+Gunakan perintah \texttt{\textbackslash sumber} bila gambar dikutip dari
+sumber lain.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\linewidth]{contoh-diagram}
+    \caption{Contoh gambar yang dikutip dari sumber lain}
+    \label{fig:g-sumber}
+\end{figure}
+\sumber{\citet{barnes2002}}
+
+\subsection{Dua gambar berdampingan}
+Gunakan \texttt{subcaption} agar tiap bagian memperoleh label (a) dan (b) yang
+dapat dirujuk terpisah, misalnya \cref{fig:g-kiri} dan \cref{fig:g-kanan}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.47\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{contoh-tangkapan-a}
+        \caption{Tampilan sebelum perbaikan}
+        \label{fig:g-kiri}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.47\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{contoh-tangkapan-b}
+        \caption{Tampilan sesudah perbaikan}
+        \label{fig:g-kanan}
+    \end{subfigure}
+    \caption{Perbandingan tampilan antarmuka}
+    \label{fig:g-berdampingan}
+\end{figure}
+
+\subsection{Gambar tinggi satu halaman}
+Untuk gambar yang tinggi, seperti diagram alir panjang, gunakan
+\texttt{height} agar tidak meluber ke halaman berikutnya.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.78\textheight,keepaspectratio]{contoh-tinggi}
+    \caption{Contoh gambar tinggi satu halaman}
+    \label{fig:g-tinggi}
+\end{figure}
+
+\subsection{Gambar lanskap}
+
+\begin{landscape}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\linewidth]{contoh-lanskap}
+    \caption{Contoh gambar pada halaman lanskap}
+    \label{fig:g-lanskap}
+\end{figure}
+\end{landscape}
+
+\subsection{Catatan penempatan gambar}
+Parameter \texttt{[H]} memaksa gambar muncul tepat di posisi penulisannya.
+Parameter \texttt{[htbp]} memberi LaTeX kebebasan menempatkan gambar pada
+posisi terbaik, sehingga halaman tidak menyisakan ruang kosong. Gunakan
+\texttt{[H]} bila urutan gambar penting, dan \texttt{[htbp]} bila
+mengutamakan kerapian halaman.
+
+% ==================================================================
+\section{Persamaan}
+% ==================================================================
+
+Persamaan dalam baris teks ditulis seperti $\bar{x} = \sum x_i / n$, sedangkan
+persamaan bernomor ditulis terpisah seperti \cref{eq:g-rerata}.
+
+\begin{equation}
+    \label{eq:g-rerata}
+    \bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_{i}
+\end{equation}
+
+Persamaan bertingkat ditulis dengan lingkungan \texttt{align}, dan setiap baris
+memperoleh nomor tersendiri seperti \cref{eq:g-gap} dan \cref{eq:g-tki}.
+
+\begin{align}
+    \text{Gap}_i &= \bar{P}_i - \bar{I}_i \label{eq:g-gap} \\
+    \text{TKI}_i &= \frac{\bar{P}_i}{\bar{I}_i} \times 100\% \label{eq:g-tki}
+\end{align}
+
+Beberapa bentuk yang sering dibutuhkan: pecahan $\frac{a}{b}$, akar
+$\sqrt[3]{x}$, jumlah $\sum_{i=1}^{n}$, hasil kali $\prod_{i=1}^{n}$, integral
+$\int_{0}^{1}$, huruf Yunani $\alpha, \beta, \sigma, \mu, \kappa$, serta matriks
+berikut.
+
+\begin{equation}
+    \label{eq:g-matriks}
+    \mathbf{D} =
+    \begin{bmatrix}
+        d_{11} & d_{12} & \cdots & d_{1n} \\
+        d_{21} & d_{22} & \cdots & d_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        d_{m1} & d_{m2} & \cdots & d_{mn}
+    \end{bmatrix}
+\end{equation}
+
+% ==================================================================
+\section{Kode Program}
+% ==================================================================
+
+\subsection{Kode ditulis langsung}
+Kode dapat ditulis langsung di dalam naskah dan dirujuk seperti
+\cref{lst:g-python}.
+
+\begin{lstlisting}[language=Python, caption={Contoh kode Python}, label=lst:g-python]
+def hitung_rerata(nilai):
+    """Menghitung rata-rata dari sebuah senarai angka."""
+    if not nilai:
+        return 0
+    return sum(nilai) / len(nilai)
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL, caption={Contoh kueri SQL}, label=lst:g-sql]
+SELECT d.nama       AS dimensi,
+       AVG(j.kinerja)     AS rerata_kinerja,
+       AVG(j.kepentingan) AS rerata_penting
+FROM   jawaban j
+JOIN   butir b   ON b.id = j.butir_id
+JOIN   dimensi d ON d.id = b.dimensi_id
+GROUP  BY d.nama
+ORDER  BY rerata_kinerja ASC;
+\end{lstlisting}
+
+\begin{lstlisting}[language=Java, caption={Contoh kode Java}, label=lst:g-java]
+public class Responden {
+    private final String kode;
+    private final int[] jawaban;
+
+    public Responden(String kode, int[] jawaban) {
+        this.kode = kode;
+        this.jawaban = jawaban;
+    }
+
+    public double rerata() {
+        return Arrays.stream(jawaban)
+                     .average()
+                     .orElse(0.0);
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=PHP, caption={Contoh kode PHP}, label=lst:g-php]
+<?php
+function hitungGap(array $kin, array $pen): array {
+    $gap = [];
+    foreach ($kin as $b => $nilai) {
+        $gap[$b] = round($nilai - $pen[$b], 2);
+    }
+    return $gap;
+}
+\end{lstlisting}
+
+\subsection{Kode dibaca dari berkas}
+Cara ini lebih dianjurkan untuk lampiran kode karena isinya selalu sinkron
+dengan berkas sumber, dapat dicari, dan tidak membengkakkan ukuran berkas
+seperti halnya tangkapan layar. Lihat \cref{lst:g-berkas}.
+
+\lstinputlisting[language=Python, caption={Kode yang dibaca langsung dari berkas \texttt{kode/hitung-sus.py}}, label=lst:g-berkas]{kode/hitung-sus.py}
+
+Sebagian baris saja juga dapat ditampilkan dengan parameter
+\texttt{firstline} dan \texttt{lastline}.
+
+\lstinputlisting[language=Python, firstline=7, lastline=18, caption={Cuplikan baris 7--18 dari berkas yang sama}, label=lst:g-cuplikan]{kode/hitung-sus.py}
+
+\subsection{Pseudocode}
+Untuk menuliskan algoritma, gunakan \texttt{algorithm2e}. Bentuk ini lebih
+disukai penguji daripada kode nyata karena tidak terikat bahasa pemrograman
+tertentu. Lihat \cref{alg:g-ipa}.
+
+\begin{algorithm}[H]
+\caption{Pemetaan kuadran \textit{Importance-Performance Analysis}}
+\label{alg:g-ipa}
+\KwMasukan{Senarai butir $B$, skor kepentingan $I$, skor kinerja $P$}
+\KwKeluaran{Kuadran setiap butir}
+$\bar{I} \leftarrow$ rata-rata seluruh nilai $I$\;
+$\bar{P} \leftarrow$ rata-rata seluruh nilai $P$\;
+\ForEach{butir $b \in B$}{
+    \uIf{$I_b \geq \bar{I}$ \textbf{dan} $P_b < \bar{P}$}{
+        $K_b \leftarrow$ ``Prioritas utama''\;
+    }
+    \uElseIf{$I_b \geq \bar{I}$}{
+        $K_b \leftarrow$ ``Pertahankan prestasi''\;
+    }
+    \uElseIf{$P_b < \bar{P}$}{
+        $K_b \leftarrow$ ``Prioritas rendah''\;
+    }
+    \Else{
+        $K_b \leftarrow$ ``Berlebihan''\;
+    }
+}
+\Return $K$\;
+\end{algorithm}
+
+% ==================================================================
+\section{Sitasi dan Daftar Pustaka}
+% ==================================================================
+
+Template ini memakai gaya APA nama-tahun. Gaya diatur melalui perintah
+\texttt{\textbackslash gayasitasi} pada berkas \texttt{a0-identitas.tex}.
+
+\subsection{Bentuk sitasi}
+
+\begin{daftarpoin}
+    \item \texttt{\textbackslash citep\{kunci\}} menghasilkan sitasi dalam
+          kurung: \citep{wijaya2022}. Dipakai bila rujukan bukan bagian dari
+          kalimat.
+    \item \texttt{\textbackslash citet\{kunci\}} menghasilkan sitasi naratif:
+          \citet{wijaya2022}. Dipakai bila nama penulis menjadi subjek kalimat.
+    \item Sitasi jamak ditulis dalam satu perintah:
+          \citep{wijaya2022, pratama2023, sari2024}.
+    \item Sitasi dengan halaman:
+          \citep[hlm.~118]{barnes2002}.
+    \item Sitasi dengan keterangan awalan:
+          \citep[lihat][]{martilla1977}.
+    \item Menyebut tahun saja: \citeyearpar{martilla1977}.
+    \item Menyebut nama penulis saja: \citeauthor{barnes2002}.
+\end{daftarpoin}
+
+\subsection{Kutipan langsung}
+Kutipan pendek ditulis menyatu dengan paragraf dan diapit tanda kutip.
+Kutipan langsung yang panjang, yaitu lebih dari 40 kata, ditulis sebagai blok
+tersendiri yang menjorok tanpa tanda kutip, seperti berikut.
+
+\begin{quote}
+    \noindent Tulis kutipan panjang Anda di sini. Blok kutipan ditulis menjorok
+    ke dalam, tanpa tanda kutip, dan tetap diakhiri sitasi yang memuat nomor
+    halaman sumbernya. Kutipan langsung sebaiknya digunakan seperlunya saja;
+    utamakan parafrasa dengan bahasa Anda sendiri agar naskah tidak menjadi
+    rangkaian kutipan. \citep[hlm.~120]{barnes2002}
+\end{quote}
+
+\subsection{Tipe entri pada berkas .bib}
+Berkas \texttt{a7-pustaka.bib} memuat katalog seluruh tipe entri yang lazim
+dipakai, yaitu \texttt{@article} untuk artikel jurnal, \texttt{@book} untuk
+buku, \texttt{@incollection} untuk bab dalam bunga rampai,
+\texttt{@inproceedings} untuk prosiding, \texttt{@mastersthesis} untuk skripsi
+atau tesis, \texttt{@techreport} untuk laporan lembaga, \texttt{@manual} untuk
+standar dan dokumentasi, serta \texttt{@misc} untuk sumber daring. Salin tipe
+yang dibutuhkan lalu isi dengan data sebenarnya.
+
+% Perintah \nocite berikut memaksa seluruh tipe entri ikut tampil pada
+% Daftar Pustaka meskipun tidak disitasi di dalam teks, sehingga Anda
+% dapat melihat bentuk tampilannya. Entri ini akan hilang sendiri
+% begitu galeri dimatikan.
+\nocite{contoh-buku, contoh-babbuku, contoh-prosiding, contoh-skripsi,
+        contoh-laporan, contoh-standar, contoh-web}
+
+Bentuk tampilan masing-masing tipe dapat Anda lihat langsung pada Daftar
+Pustaka naskah ini.
+
+% ==================================================================
+\section{Rujukan Silang}
+% ==================================================================
+
+Seluruh rujukan silang sebaiknya memakai \texttt{\textbackslash cref} agar kata
+``Gambar'', ``Tabel'', atau ``Persamaan'' muncul otomatis dan penomorannya
+selalu sinkron: \cref{fig:g-tunggal}, \cref{tab:g-biasa}, \cref{eq:g-rerata},
+\cref{lst:g-python}, dan \cref{alg:g-ipa}.
+
+Beberapa objek sekaligus dapat dirujuk dalam satu perintah dan LaTeX akan
+menyusun kata sambungnya sendiri: \cref{tab:g-biasa,tab:g-booktabs,tab:g-gabung}.
+
+Rujukan ke rumusan masalah juga tersedia. Perintah \texttt{\textbackslash
+cref\{rq:kualitas\}} menghasilkan \cref{rq:kualitas}, sehingga penomoran RQ di
+seluruh naskah menyesuaikan sendiri bila urutannya diubah.

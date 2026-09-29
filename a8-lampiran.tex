@@ -1,0 +1,52 @@
+%==================================================================
+% LAMPIRAN
+%
+% Setiap lampiran didaftarkan ke DAFTAR LAMPIRAN dengan perintah
+% \daftarlampiran{...}
+%
+% Penomoran gambar dan tabel di dalam lampiran otomatis berubah
+% menjadi A.1, A.2, B.1, dan seterusnya.
+%==================================================================
+\clearpage
+\appendix
+\renewcommand{\thefigure}{\Alph{chapter}.\arabic{figure}}
+\renewcommand{\thetable}{\Alph{chapter}.\arabic{table}}
+
+%------------------------------------------------------------------
+\chapter{INSTRUMEN PENELITIAN}
+\daftarlampiran{Lampiran A \quad Instrumen Penelitian}
+
+Lampirkan instrumen lengkap yang digunakan, misalnya kuesioner, pedoman
+wawancara, atau lembar validasi pakar.
+
+\begin{table}[H]
+    \centering
+    \caption{Contoh butir instrumen}
+    \begin{tabular}{|c|p{8cm}|c|}
+        \hline
+        \textbf{No} & \textbf{Pernyataan} & \textbf{Dimensi} \\ \hline
+        1 & Saya merasa sistem mudah dipelajari.       & \textit{Usability} \\ \hline
+        2 & Informasi yang disajikan sistem akurat.    & \textit{Information quality} \\ \hline
+        3 & Sistem memberikan tanggapan yang memadai.  & \textit{Service interaction} \\ \hline
+    \end{tabular}
+\end{table}
+
+%------------------------------------------------------------------
+\chapter{DATA HASIL PENELITIAN}
+\daftarlampiran{Lampiran B \quad Data Hasil Penelitian}
+
+Lampirkan rekapitulasi data mentah, hasil perhitungan, atau keluaran perangkat
+lunak analisis.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{contoh-tangkapan-a}
+    \caption{Contoh rekapitulasi data}
+\end{figure}
+
+%------------------------------------------------------------------
+\chapter{DOKUMENTASI}
+\daftarlampiran{Lampiran C \quad Dokumentasi}
+
+Lampirkan dokumentasi kegiatan penelitian, surat izin, atau berita acara
+pengujian.
