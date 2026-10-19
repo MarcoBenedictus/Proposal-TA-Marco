@@ -19,47 +19,57 @@ Bab ini menjelaskan rancangan penelitian yang akan dilaksanakan untuk menjawab r
 \end{figure}
 
 \subsection{Studi Literatur}
-Pada tahap ini, dilakukan penelaahan mendalam terhadap literatur ilmiah terkini yang mendasari konsep antarmuka diegetik dan penanganan latensi. Literatur utama berfokus pada \textit{Diegetic User Interface} dan kaitannya dengan \textit{Player Immersion} serta \textit{User Experience}, rekayasa \textit{Asynchronous State Machine} pada \textit{game engine} untuk memisahkan eksekusi animasi fisik karakter dari \textit{background thread}, serta pengukuran \textit{Perceived Latency} dan \textit{Player Experience} (PX).
+Pada tahap ini, dilakukan penelaahan mendalam terhadap literatur ilmiah terkini yang mendasari konsep antarmuka diegetik dan penanganan latensi. Literatur utama berfokus pada \textit{Diegetic User Interface} dan dampaknya terhadap \textit{Player Immersion} \citep{andersson2024effects}, rekayasa pemisahan \textit{thread} pada \textit{game engine} untuk menangani komputasi AI secara \textit{asynchronous} \citep{wei2025mind}, serta pengukuran \textit{Perceived Latency} dan \textit{Player Engagement} dalam interaksi manusia dan agen percakapan \citep{csepregi2021effect, elfleet2024investigating}.
 
 \subsection{Perancangan Prototipe Game 2D dan Skenario A/B Testing}
-Pengembangan prototipe dirancang 2D dengan latar berada di Kampus Unika Atma Jaya BSD. Untuk menguji efektivitas penyamaran latensi, dibuat dua skenario perlakuan (\textit{treatment groups}) dengan durasi jeda waktu komputasi AI yang disimulasikan menggunakan fungsi pengacakan waktu (\textit{randomized delay/randint}) pada rentang X detik:
+Pengembangan prototipe dirancang dalam format 2D dengan latar lokasi Kampus Unika Atma Jaya BSD. Untuk menguji efektivitas penyamaran latensi secara empiris, dibuat dua skenario perlakuan (\textit{treatment groups}). Durasi jeda waktu komputasi AI disimulasikan menggunakan \textit{controlled latency} pada rentang detik tertentu (\textit{X} detik) agar objektif:
 \begin{itemize}
-    \item \textbf{Skenario A (\textit{Baseline / Non-Diegetic Group})}: Pemain mengajukan pertanyaan teks, lalu NPC Pustakawan berada dalam kondisi diam (\textit{idle/frozen}). Layar menampilkan komponen \textit{Non-Diegetic} UI berupa \textit{Loading Bar} atau teks "\textit{Thinking...}" selama X detik sebelum jawaban teks NPC muncul.
-    \item \textbf{Skenario B (Eksperimen / \textit{Diegetic Latency Masking Group})}: Pemain mengajukan pertanyaan teks, lalu NPC memicu skrip animasi fisik kontekstual secara \textit{asynchronous} (misal: berjalan menuju rak buku atau memeriksa berkas dokumen) selama X detik yang persis sama, lalu NPC kembali ke meja dan jawaban teks muncul.
+    \item \textbf{Skenario A (\textit{Baseline / Non-Diegetic Group})}: Pemain mengajukan pertanyaan yang sudah disediakan, lalu NPC Kampus berada dalam kondisi diam (\textit{idle/frozen}). Layar menampilkan komponen \textit{Non-Diegetic} UI berupa \textit{Loading Bar} atau teks "\textit{Thinking...}" selama \textit{X} detik sebelum jawaban teks NPC muncul.
+    \item \textbf{Skenario B (Eksperimen / \textit{Diegetic Latency Masking Group})}: Pemain mengajukan pertanyaan yang sudah disediakan, lalu NPC memicu skrip animasi fisik kontekstual secara \textit{asynchronous} (misal: berjalan menuju rak buku atau memeriksa berkas dokumen) selama \textit{X} detik yang persis sama. Setelah waktu simulasi komputasi selesai, NPC kembali ke posisi awal dan jawaban teks muncul.
 \end{itemize}
 
 \subsection{Penyusunan Instrumen Evaluasi}
-Instrumen penelitian disusun menggunakan kuesioner tertutup berskala Likert lima poin, sebagaimana disajikan pada \cref{tab:likertproposal}. Butir kuesioner dirancang untuk mengukur tiga variabel utama: \textit{Perceived Latency} (mengukur persepsi wajar/tidaknya waktu tunggu), \textit{Player Immersion} (mengukur penjagaan kontinuitas cerita fiksi \textit{game}), dan \textit{Player Retention \& Experience} (mengukur kenyamanan dan keinginan melanjutkan permainan).
+Evaluasi pengalaman pemain diukur menggunakan adaptasi instrumen \textit{Game Experience Questionnaire} (GEQ) \textit{Core Module} \citep{ijsselsteijn2013game}, ditambah dengan butir khusus untuk mengukur latensi perseptual \citep{elfleet2024investigating}. GEQ tidak menggunakan skala Likert persetujuan, melainkan skala intensitas pengalaman 5 poin mulai dari 0 hingga 4, sebagaimana ditunjukkan pada \cref{tab:geqscale}.
 
-\subsection{Populasi dan Sampel}
-Populasi target penelitian ini adalah mahasiswa Teknik Aktif Universitas Katolik Atma Jaya BSD. Teknik pengambilan sampel menggunakan \textit{Convenience Sampling} dengan catatan bahwa mereka bersedia mengikuti prosedur \textit{playtesting} dua skenario interaksi secara utuh. Ukuran sampel ditetapkan sebanyak ~30 responden.
-
-\subsection{Pengumpulan Data (Prosedur Playtesting)}
-Pengumpulan data dilaksanakan melalui sesi \textit{user playtesting} langsung dengan protokol \textit{Within-Subjects Design} di mana setiap responden mencoba kedua skenario secara bergantian dengan urutan acak (\textit{counterbalancing}) untuk menghindari \textit{order bias}. Setelah menyelesaikan kedua skenario, responden mengisi kuesioner secara mandiri.
+Butir kuesioner dirancang untuk mengevaluasi empat variabel utama:
+\begin{enumerate}
+    \item \textbf{\textit{Sensory and Imaginative Immersion}}: Mengukur penjagaan kontinuitas fiksi dan seberapa dalam pemain merasa terbenam dalam dunia \textit{game}.
+    \item \textbf{\textit{Flow}}: Mengukur tingkat kelancaran interaksi dan hilangnya rasa sadar waktu akibat jeda komputasi.
+    \item \textbf{\textit{Tension/Annoyance}}: Mengukur tingkat rasa frustrasi atau kebosanan yang dipicu oleh latensi sistem.
+    \item \textbf{\textit{Perceived Latency}}: Butir kustom untuk mengukur persepsi kewajaran dan durasi subjektif dari waktu tunggu respons NPC.
+\end{enumerate}
 
 \begin{table}[H]
     \centering
-    \caption{Skala Likert yang akan digunakan}
-    \label{tab:likertproposal}
+    \caption{Skala Intensitas Pengalaman GEQ \citep{ijsselsteijn2013game}}
+    \label{tab:geqscale}
     \small
-    \begin{tabular}{|c|l|}
+    \begin{tabular}{|c|l|l|}
         \hline
-        \textbf{Skor} & \textbf{Pernyataan} \\ \hline
-        1 & Sangat Tidak Setuju (STS) \\ \hline
-        2 & Tidak Setuju (TS)         \\ \hline
-        3 & Netral (N)                \\ \hline
-        4 & Setuju (S)                \\ \hline
-        5 & Sangat Setuju (SS)        \\ \hline
+        \textbf{Skor} & \textbf{Intensitas (Asli)} & \textbf{Intensitas (Terjemahan)} \\ \hline
+        0 & \textit{Not at all} & Tidak sama sekali \\ \hline
+        1 & \textit{Slightly}   & Sedikit \\ \hline
+        2 & \textit{Moderately} & Cukup / Sedang \\ \hline
+        3 & \textit{Fairly}     & Sangat \\ \hline
+        4 & \textit{Extremely}  & Luar biasa / Ekstrem \\ \hline
     \end{tabular}
 \end{table}
 
+\subsection{Populasi dan Sampel}
+Populasi target penelitian ini adalah mahasiswa aktif program studi Teknik Universitas Katolik Indonesia Atma Jaya Kampus BSD. Mengingat evaluasi UX menuntut pemain berinteraksi langsung dengan prototipe, teknik pengambilan sampel menggunakan \textit{Convenience Sampling} dengan syarat inklusi bahwa responden bersedia mengikuti prosedur \textit{playtesting} kedua skenario interaksi secara utuh. Ukuran sampel ditetapkan sebanyak kurang lebih 30 responden, sesuai batas ambang kecukupan sampel uji statistik distribusi normal (Teorema Limit Sentral).
+
+\subsection{Pengumpulan Data (Prosedur Playtesting)}
+Pengumpulan data dilaksanakan melalui sesi \textit{user playtesting} langsung menggunakan protokol \textit{Within-Subjects Design}. Setiap responden akan mencoba kedua skenario (A dan B) secara bergantian. Untuk menghindari bias urutan pengalaman (\textit{order bias} atau \textit{learning effect}), urutan skenario yang dimainkan akan diacak bagi setiap responden (\textit{counterbalancing}). Setelah menyelesaikan kedua skenario, responden mengisi kuesioner evaluasi GEQ secara mandiri.
+
 \subsection{Teknik Analisis Data}
-Data yang terkumpul dianalisis melalui dua tahap. Pertama, \textbf{Analisis Deskriptif} untuk menghitung nilai rata-rata (\textit{mean}), standar deviasi, dan median dari skor ketiga variabel utama. Kedua, \textbf{Uji Komparatif Statistik (Uji Beda)} untuk menguji signifikansi perbedaan antara Skenario A dan Skenario B. Uji ini diawali dengan Uji Normalitas (Shapiro-Wilk) dan dilanjutkan dengan \textit{Paired Sample t-Test} (jika normal) atau \textit{Wilcoxon Signed-Rank Test} (jika tidak normal). 
-%dengan tingkat signifikansi $\alpha=0,05$.
+Data skor pengalaman yang terkumpul dianalisis melalui dua tahap:
+\begin{enumerate}
+    \item \textbf{Analisis Deskriptif}: Menghitung nilai rata-rata (\textit{mean}), standar deviasi, dan median dari skor dimensi GEQ (\textit{Immersion, Flow, Tension}) dan metrik \textit{Perceived Latency} untuk masing-masing skenario.
+    \item \textbf{Uji Komparatif Statistik (Uji Beda)}: Menguji signifikansi perbedaan skor antara Skenario A dan Skenario B untuk membuktikan efektivitas \textit{masking}. Uji ini diawali dengan Uji Normalitas (Shapiro-Wilk) pada data selisih skor. Jika data terdistribusi normal, pengujian dilanjutkan dengan \textit{Paired Sample t-Test}. Jika data tidak berdistribusi normal, digunakan \textit{Wilcoxon Signed-Rank Test}. Ambang batas tingkat signifikansi yang digunakan adalah $\alpha = 0,05$.
+\end{enumerate}
 
 \subsection{Penulisan Laporan}
-Tahap akhir adalah penyusunan laporan yang merangkum seluruh proses dan hasil
-penelitian menjadi naskah Tugas Akhir yang utuh.
+Tahap akhir adalah penyusunan laporan yang merangkum seluruh proses rekayasa sistem dan hasil uji eksperimental menjadi naskah Tugas Akhir yang utuh.
 
 \section{Matriks Keterkaitan Penelitian}
 Agar penelitian tetap terarah, setiap rumusan masalah dipetakan terhadap data dan teknik analisis yang direncanakan, sebagaimana ditunjukkan pada \cref{tab:linkageproposal}.
@@ -72,8 +82,8 @@ Agar penelitian tetap terarah, setiap rumusan masalah dipetakan terhadap data da
     \begin{tabularx}{\linewidth}{|c|X|X|}
         \hline
         \textbf{RQ} & \textbf{Data yang direncanakan} & \textbf{Teknik analisis} \\ \hline
-        \cref{rq:design}    & Spesifikasi \textit{Asynchronous State Machine} \& \textit{Asset} animasi 2D NPC & Perancangan Sistem (\textit{Prototypes Engineering}) \\ \hline
-        \cref{rq:evaluation} & Skor kuesioner \textit{Perceived Latency}, \textit{Player Immersion}, dan \textit{Player Retention} & Analisis Deskriptif dan Uji Beda Statistik \\ \hline
+        \cref{rq:design}    & Spesifikasi \textit{Asynchronous State Machine} \& \textit{Asset} animasi 2D NPC Kampus & Perancangan Sistem (\textit{Prototypes Engineering}) \\ \hline
+        \cref{rq:evaluation} & Skor kuesioner GEQ (\textit{Immersion, Flow, Tension/Annoyance}) \& \textit{Perceived Latency} & Analisis Deskriptif dan Uji Beda Statistik ($\alpha = 0,05$) \\ \hline
     \end{tabularx}
 \end{table}
 
