@@ -9,11 +9,11 @@
 \chapter{RANCANGAN PENELITIAN}
 
 \section{Metodologi Penelitian}
-Bab ini menjelaskan rancangan penelitian yang akan dilaksanakan untuk menjawab rumusan masalah pada \cref{rq:design} dan \cref{rq:evaluation}. Rancangan metodologi penelitian ini menggunakan pendekatan kuasi-eksperimental (A/B \textit{Testing Playtesting}) yang dipadukan dengan metode rekayasa perangkat lunak (\textit{prototyping}). Alur penelitian secara keseluruhan ditunjukkan pada \cref{fig:alurproposal}.
+Bab ini menjelaskan rancangan penelitian yang akan dilaksanakan untuk menjawab rumusan masalah pada \cref{rq:design} dan \cref{rq:evaluation}. Rancangan metodologi penelitian ini menggunakan pendekatan kuasi-eksperimental (A/B \textit{Testing Playtesting}) yang dipadukan dengan metode rekayasa purwarupa perangkat lunak (\textit{prototyping}) berdasarkan fase \textit{Game Development Life Cycle} (GDLC). Alur penelitian secara keseluruhan ditunjukkan pada \cref{fig:alurproposal}.
 
 \begin{figure}[H]
     \centering
-    %\includegraphics[height=7cm]{metode}   
+    \includegraphics[height=10cm]{metodepenelitian}
     \caption{Langkah Penelitian}
     \label{fig:alurproposal}
 \end{figure}
@@ -21,15 +21,18 @@ Bab ini menjelaskan rancangan penelitian yang akan dilaksanakan untuk menjawab r
 \subsection{Studi Literatur}
 Pada tahap ini, dilakukan penelaahan mendalam terhadap literatur ilmiah terkini yang mendasari konsep antarmuka diegetik dan penanganan latensi. Literatur utama berfokus pada \textit{Diegetic User Interface} dan dampaknya terhadap \textit{Player Immersion} \citep{andersson2024effects}, rekayasa pemisahan \textit{thread} pada \textit{game engine} untuk menangani komputasi AI secara \textit{asynchronous} \citep{wei2025mind}, serta pengukuran \textit{Perceived Latency} dan \textit{Player Engagement} dalam interaksi manusia dan agen percakapan \citep{csepregi2021effect, elfleet2024investigating}.
 
+\subsection{Studi Pilot (Penentuan \textit{Controlled Latency})}
+Sebelum mengimplementasikan purwarupa eksperimen utama, sebuah studi pilot (\textit{pilot study}) dilakukan untuk menyimulasikan beberapa \textit{Small Language Model} (SLM). Tujuan utama studi pilot ini adalah untuk mendapatkan data riil mengenai durasi waktu rata-rata (\textit{mean latency}) yang dibutuhkan oleh berbagai model AI tersebut dalam memproses kueri hingga menghasilkan respons teks. Angka rata-rata latensi yang diperoleh dari studi pilot ini kemudian akan ditetapkan secara statis sebagai variabel waktu tunggu terkontrol ($X$ detik) untuk seluruh skenario pengujian utama. Langkah ini krusial untuk mengeliminasi bias teknis fluktuasi kinerja AI, memastikan setiap responden menerima beban waktu komputasi yang seragam.
+
 \subsection{Perancangan Prototipe Game 2D dan Skenario A/B Testing}
-Pengembangan prototipe dirancang dalam format 2D dengan latar lokasi Kampus Unika Atma Jaya BSD. Untuk menguji efektivitas penyamaran latensi secara empiris, dibuat dua skenario perlakuan (\textit{treatment groups}). Durasi jeda waktu komputasi AI disimulasikan menggunakan \textit{controlled latency} pada rentang detik tertentu (\textit{X} detik) agar objektif:
+Pengembangan purwarupa dirancang dalam format 2D dengan latar lokasi Kampus Unika Atma Jaya BSD. Untuk menguji pengaruh penyamaran latensi \textit{Diegetic}, dibuat dua skenario perlakuan (\textit{treatment groups}) yang menggunakan angka \textit{controlled latency} ($X$ detik) dari hasil studi pilot:
 \begin{itemize}
-    \item \textbf{Skenario A (\textit{Baseline / Non-Diegetic Group})}: Pemain mengajukan pertanyaan yang sudah disediakan, lalu NPC Kampus berada dalam kondisi diam (\textit{idle/frozen}). Layar menampilkan komponen \textit{Non-Diegetic} UI berupa \textit{Loading Bar} atau teks "\textit{Thinking...}" selama \textit{X} detik sebelum jawaban teks NPC muncul.
-    \item \textbf{Skenario B (Eksperimen / \textit{Diegetic Latency Masking Group})}: Pemain mengajukan pertanyaan yang sudah disediakan, lalu NPC memicu skrip animasi fisik kontekstual secara \textit{asynchronous} (misal: berjalan menuju rak buku atau memeriksa berkas dokumen) selama \textit{X} detik yang persis sama. Setelah waktu simulasi komputasi selesai, NPC kembali ke posisi awal dan jawaban teks muncul.
+    \item \textbf{Skenario A (\textit{Baseline / Non-Diegetic Group})}: Pemain mengajukan pertanyaan yang telah disediakan, lalu NPC Kampus berada dalam kondisi diam (\textit{idle/frozen}). Layar menampilkan komponen \textit{Non-Diegetic} UI berupa \textit{Loading Bar} atau teks "\textit{Thinking...}" selama persis $X$ detik sebelum jawaban teks NPC muncul.
+    \item \textbf{Skenario B (Eksperimen / \textit{Diegetic Latency Masking Group})}: Pemain mengajukan pertanyaan yang telah disediakan, lalu NPC memicu skrip animasi fisik kontekstual secara \textit{asynchronous} (misal: berjalan menuju rak buku atau memeriksa berkas dokumen) selama persis $X$ detik. Setelah waktu simulasi komputasi selesai, NPC kembali ke posisi awal dan jawaban teks muncul.
 \end{itemize}
 
 \subsection{Penyusunan Instrumen Evaluasi}
-Evaluasi pengalaman pemain diukur menggunakan adaptasi instrumen \textit{Game Experience Questionnaire} (GEQ) \textit{Core Module} \citep{ijsselsteijn2013game}, ditambah dengan butir khusus untuk mengukur latensi perseptual \citep{elfleet2024investigating}. GEQ tidak menggunakan skala Likert persetujuan, melainkan skala intensitas pengalaman 5 poin mulai dari 0 hingga 4, sebagaimana ditunjukkan pada \cref{tab:geqscale}.
+Evaluasi pengalaman pemain diukur menggunakan adaptasi instrumen \textit{Game Experience Questionnaire} (GEQ) \textit{Core Module} \citep{ijsselsteijn2013game}, ditambah dengan butir khusus untuk mengukur latensi perseptual \citep{elfleet2024investigating}. Instrumen GEQ menggunakan skala intensitas pengalaman 5 poin mulai dari 0 (\textit{Tidak sama sekali}) hingga 4 (\textit{Ekstrem}), sebagaimana ditunjukkan pada \cref{tab:geqscale}.
 
 Butir kuesioner dirancang untuk mengevaluasi empat variabel utama:
 \begin{enumerate}
@@ -65,7 +68,7 @@ Pengumpulan data dilaksanakan melalui sesi \textit{user playtesting} langsung me
 Data skor pengalaman yang terkumpul dianalisis melalui dua tahap:
 \begin{enumerate}
     \item \textbf{Analisis Deskriptif}: Menghitung nilai rata-rata (\textit{mean}), standar deviasi, dan median dari skor dimensi GEQ (\textit{Immersion, Flow, Tension}) dan metrik \textit{Perceived Latency} untuk masing-masing skenario.
-    \item \textbf{Uji Komparatif Statistik (Uji Beda)}: Menguji signifikansi perbedaan skor antara Skenario A dan Skenario B untuk membuktikan efektivitas \textit{masking}. Uji ini diawali dengan Uji Normalitas (Shapiro-Wilk) pada data selisih skor. Jika data terdistribusi normal, pengujian dilanjutkan dengan \textit{Paired Sample t-Test}. Jika data tidak berdistribusi normal, digunakan \textit{Wilcoxon Signed-Rank Test}. Ambang batas tingkat signifikansi yang digunakan adalah $\alpha = 0,05$.
+    \item \textbf{Uji Komparatif Statistik (Uji Beda)}: Menguji signifikansi perbedaan skor antara Skenario A dan Skenario B untuk membuktikan efektivitas \textit{masking}. Uji ini diawali dengan Uji Normalitas (Shapiro-Wilk) pada data selisih skor. Jika data terdistribusi normal, pengujian dilanjutkan dengan \textit{Paired Sample t-Test}. Jika data tidak berdistribusi normal, digunakan \textit{Wilcoxon Signed-Rank Test}. Ambang batas tingkat signifikansi ditetapkan sebesar $\alpha = 0,05$.
 \end{enumerate}
 
 \subsection{Penulisan Laporan}
@@ -82,7 +85,7 @@ Agar penelitian tetap terarah, setiap rumusan masalah dipetakan terhadap data da
     \begin{tabularx}{\linewidth}{|c|X|X|}
         \hline
         \textbf{RQ} & \textbf{Data yang direncanakan} & \textbf{Teknik analisis} \\ \hline
-        \cref{rq:design}    & Spesifikasi \textit{Asynchronous State Machine} \& \textit{Asset} animasi 2D NPC Kampus & Perancangan Sistem (\textit{Prototypes Engineering}) \\ \hline
+        \cref{rq:design}    & Spesifikasi \textit{Asynchronous State Machine}, durasi \textit{controlled latency} studi pilot, \& aset animasi NPC & Perancangan Sistem Berbasis GDLC \\ \hline
         \cref{rq:evaluation} & Skor kuesioner GEQ (\textit{Immersion, Flow, Tension/Annoyance}) \& \textit{Perceived Latency} & Analisis Deskriptif dan Uji Beda Statistik ($\alpha = 0,05$) \\ \hline
     \end{tabularx}
 \end{table}
@@ -102,8 +105,8 @@ Rencana pelaksanaan penelitian disusun selama enam bulan sebagaimana ditunjukkan
           & \multicolumn{6}{c|}{\textbf{Bulan}} \\ \cline{3-8}
          & & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline
         1. & Studi Literatur \& Penyusunan Instrumen & \cellcolor{jadwalisi} & \cellcolor{jadwalisi} &                       &                       &                       &                       \\ \hline
-        2. & Perancangan \& Pembuatan Aset Animasi 2D &                       & \cellcolor{jadwalisi} & \cellcolor{jadwalisi} &                       &                       &                       \\ \hline
-        3. & Implementasi Prototipe Skenario A \& B  &                       &                       & \cellcolor{jadwalisi} & \cellcolor{jadwalisi} &                       &                       \\ \hline
+        2. & Studi Pilot \& Pengujian Latensi SLM    &                       & \cellcolor{jadwalisi} &                       &                       &                       &                       \\ \hline
+        3. & Perancangan Prototipe \& Animasi 2D     &                       & \cellcolor{jadwalisi} & \cellcolor{jadwalisi} &                       &                       &                       \\ \hline
         4. & Sesi \textit{Playtesting} \& Pengumpulan Data &                       &                       &                       & \cellcolor{jadwalisi} &                       &                       \\ \hline
         5. & Analisis Data Statistik \& Uji Beda     &                       &                       &                       &                       & \cellcolor{jadwalisi} &                       \\ \hline
         6. & Penyusunan Laporan Akhir \& Sidang TA   &                       &                       &                       &                       & \cellcolor{jadwalisi} & \cellcolor{jadwalisi} \\ \hline
